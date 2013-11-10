@@ -1,0 +1,27 @@
+package com.automate.app.route;
+
+/**
+ * Class that contains informatioon for directing application routing.
+ * @param <T> the type of the args, typically some kind of container class.
+ */
+public class Rotue <T> {
+	
+	public final RouteController controller;
+	public final Action action;
+	private T args;
+	
+	public Rotue(RouteController controller, Action action, T args) {
+		this.controller = controller;
+		this.action = action;
+		this.args = args;
+	}
+
+	public T getArgs() {
+		return args;
+	}
+	
+	private void setArgs(T args) {
+		this.args = args;
+	}
+	
+}

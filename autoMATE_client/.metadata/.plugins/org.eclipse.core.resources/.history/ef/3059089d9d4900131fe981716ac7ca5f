@@ -1,0 +1,7 @@
+package com.automate.app.route;
+
+public interface IRouteDelegate {
+
+	public void start(IApplican application) throws RotueDelegateException;
+	
+}

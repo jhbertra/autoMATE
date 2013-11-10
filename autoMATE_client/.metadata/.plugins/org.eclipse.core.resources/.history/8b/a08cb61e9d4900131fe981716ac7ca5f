@@ -1,0 +1,28 @@
+package com.automate.app;
+
+import com.automate.app.route.Route;
+
+import android.app.Application;
+
+
+public class AutoMATEApplication extends Application implements IApplication {
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		initialize();
+	}
+
+	@Override
+	public void initialize() {
+		
+	}
+
+	@Override
+	public void handleRoute(Route route) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}

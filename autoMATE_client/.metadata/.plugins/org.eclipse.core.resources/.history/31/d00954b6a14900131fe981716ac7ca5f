@@ -1,0 +1,13 @@
+package com.automate.app.route;
+
+import com.automate.app.IApplication;
+
+public class Test1RouteDelegate implements IRouteDelegate {
+
+	@Override
+	public void start(IApplication application) throws RouteDelegateException {
+		// TODO Auto-generated method stub
+
+	}
+
+}

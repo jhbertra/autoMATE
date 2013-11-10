@@ -1,0 +1,5 @@
+package com.automate.app.route;
+
+public class RotueDelegateException extends Exception {
+
+}

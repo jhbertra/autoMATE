@@ -1,0 +1,11 @@
+package com.automate.app.route;
+
+import android.app.Activity;
+
+import com.automate.app.IApplication;
+
+public interface IRouteDelegate {
+
+	public void start(IApplication application, Activity activity) throws RouteDelegateException;
+	
+}

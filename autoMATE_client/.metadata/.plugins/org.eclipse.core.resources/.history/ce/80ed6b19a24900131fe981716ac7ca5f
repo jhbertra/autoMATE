@@ -1,0 +1,11 @@
+package com.automate.app.route;
+
+public class TestRouteController implements IRouteController {
+
+	@Override
+	public IRouteDelegate handleAction(Action action, Object args) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
