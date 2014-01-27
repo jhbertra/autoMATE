@@ -3,6 +3,7 @@
 	<name>autoMATEClient</name>
 	<comment></comment>
 	<projects>
+		<project>autoMATECore</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

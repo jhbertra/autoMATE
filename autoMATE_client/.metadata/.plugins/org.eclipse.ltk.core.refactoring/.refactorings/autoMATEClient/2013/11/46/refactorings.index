@@ -1,3 +1,17 @@
 1384042006584	Rename type 'Rotue'
 1384042704507	Rename type 'RotueDelegateException'
 1384044015446	Delete element
+1384126771288	Rename type 'AbstractXMLWriter'
+1384127584799	Move compilation unit
+1384127587918	Move compilation unit
+1384130723573	Move compilation units
+1384130772959	Copy compilation unit
+1384130858978	Rename type 'ProtocolParameters'
+1384130934551	Rename type 'AuthenticationMessage'
+1384130954106	Rename type 'NodeListMessage'
+1384130985495	Copy compilation unit
+1384130992454	Rename type 'ClientProtocolParameters'
+1384131127777	Copy compilation unit
+1384131196305	Rename type 'ClientAuthenticationMessage'
+1384131573718	Copy compilation unit
+1384131592782	Rename type 'ClientNodeListMessage'

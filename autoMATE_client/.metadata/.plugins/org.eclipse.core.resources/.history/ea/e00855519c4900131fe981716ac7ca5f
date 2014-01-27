@@ -1,7 +1,0 @@
-package com.automate.app.route;
-
-public interface IRouteController {
-
-	void handleAction(Action action, Object args);
-	
-}

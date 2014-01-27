@@ -3,5 +3,20 @@
     "location": "C:\\android-sdk\\platforms\\android-18\\android.jar",
     "status": "UNRESOLVED",
     "error": "No call model found for \u0027C:\\android-sdk\\platforms\\android-18\\android.jar\u0027. Neither fingerprint \u002727195b1f36b15d98b2a5f7b29789ba60e05c2ba3\u0027 nor symbolic name \u0027android\u0027 are known."
+  },
+  "C:\\Users\\jamie.bertram\\Documents\\GitHub\\autoMATE\\autoMATE_client\\autoMATEClient\\src": {
+    "location": "C:\\Users\\jamie.bertram\\Documents\\GitHub\\autoMATE\\autoMATE_client\\autoMATEClient\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\jamie.bertram\\Documents\\GitHub\\autoMATE\\autoMATE_client\\autoMATEClient\\src\u0027. Skipped."
+  },
+  "C:\\Program Files\\Java\\jre6\\lib\\rt.jar": {
+    "location": "C:\\Program Files\\Java\\jre6\\lib\\rt.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Program Files\\Java\\jre6\\lib\\rt.jar\u0027. Neither fingerprint \u002724fa8456fc59cee97ca0cbc201f947457e755e89\u0027 nor symbolic name \u0027jre\u0027 are known."
+  },
+  "C:\\Users\\jamie.bertram\\Documents\\GitHub\\autoMATE\\autoMATE_client\\autoMATEServer\\src": {
+    "location": "C:\\Users\\jamie.bertram\\Documents\\GitHub\\autoMATE\\autoMATE_client\\autoMATEServer\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\jamie.bertram\\Documents\\GitHub\\autoMATE\\autoMATE_client\\autoMATEServer\\src\u0027. Skipped."
   }
 }

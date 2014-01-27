@@ -3,5 +3,11 @@
 <typeInfo handle="=autoMATEClient/C:\/android-sdk\/platforms\/android-18\/android.jar&lt;android.app(Application.class[Application" modifiers="33" timestamp="1376001628251"/>
 <typeInfo handle="=autoMATEClient/src&lt;com.automate.app.route{IRouteController.java[IRouteController" modifiers="513" timestamp="1384042747523"/>
 <typeInfo handle="=autoMATEClient/C:\/android-sdk\/platforms\/android-18\/android.jar&lt;android.app(Activity.class[Activity" modifiers="33" timestamp="1376001628251"/>
-<typeInfo handle="=autoMATEClient/src&lt;com.automate{Test1Activity.java[Test1Activity" modifiers="1" timestamp="1384044936328"/>
+<typeInfo handle="=autoMATEClient/src&lt;com.automate.protocol{Message.java[Message" modifiers="1025" timestamp="1389636417382"/>
+<typeInfo handle="=autoMATEClient/src&lt;com.automate.protocol.client{ClientAuthenticationMessageSubParser.java[ClientAuthenticationMessageSubParser" modifiers="1" timestamp="1389635177723"/>
+<typeInfo handle="=autoMATEClient/src&lt;com.automate.protocol{MessageSubParser.java[MessageSubParser" modifiers="1025" timestamp="1389634975252"/>
+<typeInfo handle="=autoMATEClient/src&lt;com.automate.protocol{MessageHandler.java[MessageHandler" modifiers="1025" timestamp="1389647503834"/>
+<typeInfo handle="=autoMATEClient/C:\/android-sdk\/platforms\/android-18\/android.jar&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1376001628251"/>
+<typeInfo handle="=autoMATEClient/src&lt;com.automate.io{PacketReadThread.java[PacketReadThread" modifiers="1" timestamp="1389646448540"/>
+<typeInfo handle="=autoMATEServer/C:\/Program Files\/Java\/jre6\/lib\/rt.jar&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1362609311397"/>
 </typeInfoHistroy>

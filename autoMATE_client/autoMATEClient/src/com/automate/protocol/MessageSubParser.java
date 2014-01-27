@@ -7,15 +7,14 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.util.xml.XmlFormatException;
 
-public abstract class MessageSubParser<M extends Message<?>> {
-
-	public M parseXml(String xml) throws XmlFormatException, XmlPullParserException, IOException {
+public abstract class MessageSubParser<M extends Message<?>, P extends ProtocolParameters> {
+	
+	public M parseXml(String xml) throws XmlFormatException, XmlPullParserException, IOException, MessageFormatException {
 		XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
 		parser.setInput(new StringReader(xml));
-		ServerProtocolParameters parameters = null;
+		P parameters = null;
 		int type = parser.nextTag();
 		if(type == XmlPullParser.START_TAG) {
 			if(parser.getText().equals("message")) {
@@ -23,8 +22,12 @@ public abstract class MessageSubParser<M extends Message<?>> {
 				if(type == XmlPullParser.START_TAG) {
 					if(parser.getText().equals("parameters")) {
 						parameters = parseParameters(parser);
+						type = parser.nextTag();
+						if(type != XmlPullParser.END_TAG) {
+							throw new XmlFormatException("Close tag expected after parameters.");
+						}
 					} else {
-						throw new XmlFormatException("first nested element was not parameters in " + getClass().getName() + ".parse(String xml)");
+						throw new MessageFormatException("first nested element was not parameters in " + getClass().getName() + ".parse(String xml)");
 					}
 				} else {
 					throw new XmlFormatException("unexpected CLOSE_TAG event after opening message tag in " + getClass().getName() + ".parse(String xml)");
@@ -32,9 +35,14 @@ public abstract class MessageSubParser<M extends Message<?>> {
 				type = parser.nextTag();
 				if(type == XmlPullParser.START_TAG) {
 					if(parser.getText().equals("content")) {
-						return parseContent(parser, parameters);
+						M message = parseContent(parser, parameters);
+						type = parser.nextTag();
+						if(type != XmlPullParser.END_TAG) {
+							throw new XmlFormatException("Close tag expected after content.");
+						}
+						return message;
 					} else {
-						throw new XmlFormatException("second nested element was not content in " + getClass().getName() + ".parse(String xml)");
+						throw new MessageFormatException("second nested element was not content in " + getClass().getName() + ".parse(String xml)");
 					}
 				} else {
 					throw new XmlFormatException("unexpected CLOSE_TAG event after parameters in " + getClass().getName() + ".parse(String xml)");
@@ -47,10 +55,8 @@ public abstract class MessageSubParser<M extends Message<?>> {
 		}
 	}
 	
-	private ServerProtocolParameters parseParameters(XmlPullParser parser) {
-		
-	}
+	protected abstract P parseParameters(XmlPullParser parser) throws XmlFormatException, XmlPullParserException, IOException, MessageFormatException;
 	
-	protected abstract M parseContent(XmlPullParser parser, ServerProtocolParameters parameters);
+	protected abstract M parseContent(XmlPullParser parser, P parameters) throws XmlFormatException, XmlPullParserException, IOException, MessageFormatException ;
 	
 }

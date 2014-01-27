@@ -1,8 +1,0 @@
-import android.app.Application;
-
-
-public class AutoMATEApplication extends Application {
-
-	
-	
-}
