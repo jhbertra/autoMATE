@@ -1,7 +1,6 @@
 package com.automate.protocol.server.messages;
 
 import com.automate.protocol.Message;
-import com.automate.protocol.Message.MessageType;
 import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.util.xml.Attribute;
 

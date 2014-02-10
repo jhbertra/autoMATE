@@ -3,10 +3,8 @@ package com.automate.protocol.server.messages;
 import java.util.List;
 
 import com.automate.protocol.Message;
-import com.automate.protocol.Message.MessageType;
 import com.automate.protocol.models.Node;
 import com.automate.protocol.server.ServerProtocolParameters;
-import com.automate.util.xml.Attribute;
 import com.automate.util.xml.XmlFormatException;
 
 public class ServerNodeListMessage extends Message <ServerProtocolParameters> {

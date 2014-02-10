@@ -2,6 +2,11 @@ package com.automate.protocol;
 
 public class MessageHandlingException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2589993565827512949L;
+
 	public MessageHandlingException() {
 		super();
 	}

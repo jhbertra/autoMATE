@@ -218,7 +218,7 @@ public class Scanner {
 		@Override
 		public boolean equals(Object obj) {
 			if(obj instanceof ScannerRule) {
-				return this.regex.equals(((ScannerRule) obj).regex);
+				return this.regex.equals(((ScannerRule<?>) obj).regex);
 			} else {
 				return false;
 			}

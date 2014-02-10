@@ -2,6 +2,11 @@ package com.automate.protocol;
 
 public class MessageFormatException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5985818437779078127L;
+
 	public MessageFormatException() {
 		super();
 	}

@@ -1,7 +1,5 @@
 package com.automate.server;
 
-import java.sql.SQLException;
-
 public interface IManager {
 
 	public void initialize() throws Exception;

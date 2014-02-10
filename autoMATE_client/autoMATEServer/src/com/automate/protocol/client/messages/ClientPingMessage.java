@@ -1,7 +1,6 @@
 package com.automate.protocol.client.messages;
 
 import com.automate.protocol.Message;
-import com.automate.protocol.Message.MessageType;
 import com.automate.protocol.client.ClientProtocolParameters;
 
 public class ClientPingMessage extends Message<ClientProtocolParameters> {

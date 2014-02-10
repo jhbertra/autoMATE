@@ -1,9 +1,6 @@
 package com.automate.protocol.server;
 
 import com.automate.protocol.ProtocolParameters;
-import com.automate.util.xml.Attribute;
-import com.automate.util.xml.XmlConvertible;
-import com.automate.util.xml.XmlFormatException;
 
 /**
  * Parameters for messages sent by the server.

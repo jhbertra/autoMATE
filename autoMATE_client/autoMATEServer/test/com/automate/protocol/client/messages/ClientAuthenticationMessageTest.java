@@ -2,8 +2,6 @@ package com.automate.protocol.client.messages;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.automate.protocol.client.ClientProtocolParameters;
