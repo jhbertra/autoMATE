@@ -2,7 +2,7 @@ package com.automate.server.database;
 
 import java.util.List;
 
-import com.automate.models.Node;
+import com.automate.protocol.models.Node;
 import com.automate.server.IManager;
 import com.automate.server.database.models.User;
 

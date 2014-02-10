@@ -1,7 +1,9 @@
-package com.automate.protocol.client;
+package com.automate.protocol.client.subParsers;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+
+import com.automate.protocol.client.messages.ClientAuthenticationMessage;
 
 public class ClientAuthenticationMessageSubParser extends ClientMessageSubParser<ClientAuthenticationMessage> {
 

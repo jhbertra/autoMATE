@@ -1,10 +1,11 @@
-package com.automate.protocol.client;
+package com.automate.protocol.client.subParsers;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import com.automate.protocol.Message;
 import com.automate.protocol.MessageSubParser;
+import com.automate.protocol.client.ClientProtocolParameters;
 
 public abstract class ClientMessageSubParser <M extends Message<ClientProtocolParameters>> 
 extends MessageSubParser<M, ClientProtocolParameters> {

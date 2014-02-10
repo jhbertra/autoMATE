@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.util.List;
 import java.util.Properties;
 
-import com.automate.models.Node;
+import com.automate.protocol.models.Node;
 import com.automate.server.database.models.User;
 
 public class DatabaseManager implements IDatabaseManager {

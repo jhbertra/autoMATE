@@ -1,4 +1,4 @@
-package com.automate.protocol.server;
+package com.automate.protocol.server.subParsers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import com.automate.models.Node;
+import com.automate.protocol.models.Node;
+import com.automate.protocol.server.messages.ServerNodeListMessage;
 
 public class ServerNodeListMessageSubParser extends ServerMessageSubParser<ServerNodeListMessage> {
 

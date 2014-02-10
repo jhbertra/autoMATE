@@ -1,9 +1,9 @@
 package com.automate.server.messaging.handlers;
 
 import com.automate.protocol.Message;
-import com.automate.protocol.client.ClientAuthenticationMessage;
-import com.automate.protocol.server.ServerAuthenticationMessage;
+import com.automate.protocol.client.messages.ClientAuthenticationMessage;
 import com.automate.protocol.server.ServerProtocolParameters;
+import com.automate.protocol.server.messages.ServerAuthenticationMessage;
 import com.automate.server.messaging.IMessageHandler;
 import com.automate.server.security.ISecurityManager;
 

@@ -6,6 +6,10 @@ import java.util.NoSuchElementException;
 import com.automate.protocol.IncomingMessageParser;
 import com.automate.protocol.Message;
 import com.automate.protocol.MessageSubParser;
+import com.automate.protocol.client.subParsers.ClientAuthenticationMessageSubParser;
+import com.automate.protocol.client.subParsers.ClientMessageSubParser;
+import com.automate.protocol.client.subParsers.ClientNodeListMessageSubParser;
+import com.automate.protocol.client.subParsers.ClientPingMessageSubParser;
 
 public class IncomingClientMessageParser extends IncomingMessageParser<ClientProtocolParameters> {
 

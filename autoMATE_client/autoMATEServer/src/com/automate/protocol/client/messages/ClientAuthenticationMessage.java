@@ -1,7 +1,8 @@
-package com.automate.protocol.client;
+package com.automate.protocol.client.messages;
 
 import com.automate.protocol.Message;
 import com.automate.protocol.Message.MessageType;
+import com.automate.protocol.client.ClientProtocolParameters;
 import com.automate.util.xml.Attribute;
 
 public class ClientAuthenticationMessage extends Message <ClientProtocolParameters> {

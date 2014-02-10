@@ -1,7 +1,8 @@
-package com.automate.protocol.server;
+package com.automate.protocol.server.messages;
 
 import com.automate.protocol.Message;
 import com.automate.protocol.Message.MessageType;
+import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.util.xml.Attribute;
 
 public class ServerAuthenticationMessage extends Message <ServerProtocolParameters> {

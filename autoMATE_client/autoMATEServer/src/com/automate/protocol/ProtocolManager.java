@@ -4,7 +4,7 @@ import java.io.OutputStream;
 
 import com.automate.io.PacketReceiver;
 import com.automate.io.PacketSender;
-import com.automate.protocol.client.ClientPingMessage;
+import com.automate.protocol.client.messages.ClientPingMessage;
 import com.automate.util.xml.XmlFormatException;
 
 public class ProtocolManager {

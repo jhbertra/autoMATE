@@ -1,6 +1,7 @@
-package com.automate.protocol.server;
+package com.automate.protocol.server.messages;
 
 import com.automate.protocol.Message;
+import com.automate.protocol.server.ServerProtocolParameters;
 
 public class ServerPingMessage extends Message<ServerProtocolParameters> {
 

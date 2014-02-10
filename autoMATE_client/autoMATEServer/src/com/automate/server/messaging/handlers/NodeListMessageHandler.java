@@ -2,11 +2,11 @@ package com.automate.server.messaging.handlers;
 
 import java.util.List;
 
-import com.automate.models.Node;
 import com.automate.protocol.Message;
-import com.automate.protocol.client.ClientNodeListMessage;
-import com.automate.protocol.server.ServerNodeListMessage;
+import com.automate.protocol.client.messages.ClientNodeListMessage;
+import com.automate.protocol.models.Node;
 import com.automate.protocol.server.ServerProtocolParameters;
+import com.automate.protocol.server.messages.ServerNodeListMessage;
 import com.automate.server.database.IDatabaseManager;
 import com.automate.server.messaging.IMessageHandler;
 import com.automate.server.security.ISecurityManager;

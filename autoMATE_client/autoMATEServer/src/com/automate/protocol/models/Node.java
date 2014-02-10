@@ -1,4 +1,4 @@
-package com.automate.models;
+package com.automate.protocol.models;
 
 import com.automate.util.xml.Attribute;
 import com.automate.util.xml.XmlConvertible;

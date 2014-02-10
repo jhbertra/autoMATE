@@ -1,7 +1,7 @@
 package com.automate.server.messaging.handlers;
 
 import com.automate.protocol.Message;
-import com.automate.protocol.client.ClientPingMessage;
+import com.automate.protocol.client.messages.ClientPingMessage;
 import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.server.connectivity.IConnectivityManager;
 import com.automate.server.messaging.IMessageHandler;

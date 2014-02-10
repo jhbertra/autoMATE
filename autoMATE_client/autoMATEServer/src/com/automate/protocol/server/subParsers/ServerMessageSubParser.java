@@ -1,10 +1,11 @@
-package com.automate.protocol.server;
+package com.automate.protocol.server.subParsers;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import com.automate.protocol.Message;
 import com.automate.protocol.MessageSubParser;
+import com.automate.protocol.server.ServerProtocolParameters;
 
 public abstract class ServerMessageSubParser <M extends Message<ServerProtocolParameters>> 
 extends MessageSubParser<M, ServerProtocolParameters> {

@@ -1,10 +1,12 @@
-package com.automate.protocol.server;
+package com.automate.protocol.client.subParsers;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-public class ServerPingMessageSubParser extends ServerMessageSubParser<ServerPingMessage> {
-	
+import com.automate.protocol.client.messages.ClientPingMessage;
+
+public class ClientPingMessageSubParser extends ClientMessageSubParser<ClientPingMessage>{
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
@@ -12,7 +14,7 @@ public class ServerPingMessageSubParser extends ServerMessageSubParser<ServerPin
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
 		if(qName.equals("ping")) {
-			this.message = new ServerPingMessage(parameters);
+			this.message = new ClientPingMessage(parameters);
 		} else {
 			super.startElement(uri, localName, qName, attributes);
 		}

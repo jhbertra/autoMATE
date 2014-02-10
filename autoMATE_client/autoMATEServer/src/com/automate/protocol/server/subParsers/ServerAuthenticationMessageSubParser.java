@@ -1,7 +1,9 @@
-package com.automate.protocol.server;
+package com.automate.protocol.server.subParsers;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+
+import com.automate.protocol.server.messages.ServerAuthenticationMessage;
 
 public class ServerAuthenticationMessageSubParser extends ServerMessageSubParser<ServerAuthenticationMessage> {
 	

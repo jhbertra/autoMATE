@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Set;
 
-import com.automate.protocol.server.ServerPingMessage;
 import com.automate.protocol.server.ServerProtocolParameters;
+import com.automate.protocol.server.messages.ServerPingMessage;
 import com.automate.server.connectivity.EngineCallback;
 import com.automate.server.messaging.IMessageManager;
 import com.automate.server.messaging.IMessageManager.MessageSentListener;
