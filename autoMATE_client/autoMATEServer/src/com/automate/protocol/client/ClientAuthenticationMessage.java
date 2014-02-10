@@ -1,6 +1,7 @@
 package com.automate.protocol.client;
 
 import com.automate.protocol.Message;
+import com.automate.protocol.Message.MessageType;
 import com.automate.util.xml.Attribute;
 
 public class ClientAuthenticationMessage extends Message <ClientProtocolParameters> {
@@ -17,6 +18,11 @@ public class ClientAuthenticationMessage extends Message <ClientProtocolParamete
 	@Override
 	protected void addContent() {
 		addElement("authentication", true, new Attribute("username", username), new Attribute("password", password));
+	}
+
+	@Override
+	public MessageType getMessageType() {
+		return MessageType.AUTHENTICATION;
 	}
 
 }

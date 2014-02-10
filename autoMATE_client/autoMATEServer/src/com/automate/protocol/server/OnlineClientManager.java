@@ -9,5 +9,6 @@ public interface OnlineClientManager {
 	public void removeClient(ClientId clientId);
 	public List<ClientId> getClientsQueuedForPings();
 	public void clientPinged(ClientId id);
-
+	public void reconcilePingedClient(ClientId id);
+	
 }

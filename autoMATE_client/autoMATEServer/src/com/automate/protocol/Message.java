@@ -7,6 +7,15 @@ public abstract class Message <P extends ProtocolParameters> extends XmlConverti
 
 	private P parameters;
 	
+	public static enum MessageType {
+		AUTHENTICATION,
+		NODE_LIST,
+		COMMAND,
+		PING,
+		STATUS_UPDATE,
+		WARNING
+	}
+	
 	public static final String AUTHENTICATION = "authentication";
 	public static final String NODE_LIST = "node-list";
 	public static final String COMMAND = "command";
@@ -47,5 +56,7 @@ public abstract class Message <P extends ProtocolParameters> extends XmlConverti
 	public P getParameters() {
 		return parameters;
 	}
+	
+	public abstract MessageType getMessageType();
 	
 }

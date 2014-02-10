@@ -17,8 +17,7 @@ public class ProtocolManager {
 	private int protocolPort;
 	
 	public ProtocolManager(AddressProvider addressProvider,
-			PacketReceiver<?> packetReciever, PacketSender packetSender,
-			String sessionKey, int port) {
+			PacketReceiver<?> packetReciever, PacketSender packetSender, int port) {
 		this.addressProvider = addressProvider;
 		this.packetReciever = packetReciever;
 		this.packetSender = packetSender;

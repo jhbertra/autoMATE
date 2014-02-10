@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public class ConnectivityWatchdogThread extends Thread {
 
-	private HashMap<Long, ArrayList<ClientId>> responseTimeoutToClientId = new HashMap<Long, ArrayList<ClientId>>();
-	private HashMap<ClientId, Long> clientIdToTimeout = new HashMap<ClientId, Long>();
+	private HashMap<Long, ArrayList<String>> responseTimeoutToClientId = new HashMap<Long, ArrayList<String>>();
+	private HashMap<String, Long> clientIdToTimeout = new HashMap<String, Long>();
 
 	private final Object lock = new Object();
 
@@ -29,9 +29,9 @@ public class ConnectivityWatchdogThread extends Thread {
 		startTime = System.currentTimeMillis();
 		synchronized (lock) {
 			while(!cancelled) {
-				ArrayList<ClientId> clientList = responseTimeoutToClientId.remove(currentSecond);
+				ArrayList<String> clientList = responseTimeoutToClientId.remove(currentSecond);
 				if(clientList != null) {
-					for(ClientId client : clientList) {
+					for(String client : clientList) {
 						listener.onClientTimeout(client);
 						clientIdToTimeout.remove(client);
 					}
@@ -49,26 +49,26 @@ public class ConnectivityWatchdogThread extends Thread {
 		}
 	}
 
-	public void setTimeout(ClientId client, int timeoutDelaySeconds) {
+	public void setTimeout(String client, int timeoutDelaySeconds) {
 		long timeout = currentSecond + 1 + timeoutDelaySeconds;
 		synchronized(lock) {
 			if(clientIdToTimeout.containsKey(client)) {
 				return;
 			}
 			if(!responseTimeoutToClientId.containsKey(timeout)) {
-				responseTimeoutToClientId.put(timeout, new ArrayList<ClientId>());
+				responseTimeoutToClientId.put(timeout, new ArrayList<String>());
 			}
 			responseTimeoutToClientId.get(timeout).add(client);
 			clientIdToTimeout.put(client, timeout);
 		}
 	}
 
-	public boolean cancelTimeout(ClientId clientId) {
+	public boolean cancelTimeout(String sessionKey) {
 		synchronized (lock) {
-			if(!clientIdToTimeout.containsKey(clientId)) return false;
-			long timeout = clientIdToTimeout.remove(clientId);
-			ArrayList<ClientId> clientList = responseTimeoutToClientId.get(timeout); 
-			clientList.remove(clientId);
+			if(!clientIdToTimeout.containsKey(sessionKey)) return false;
+			long timeout = clientIdToTimeout.remove(sessionKey);
+			ArrayList<String> clientList = responseTimeoutToClientId.get(timeout); 
+			clientList.remove(sessionKey);
 			if(clientList.isEmpty()) {
 				responseTimeoutToClientId.remove(timeout);
 			}
@@ -94,7 +94,7 @@ public class ConnectivityWatchdogThread extends Thread {
 
 	public interface OnClientTimeoutListener {
 		
-		public void onClientTimeout(ClientId client);
+		public void onClientTimeout(String client);
 		
 	}
 

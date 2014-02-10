@@ -7,11 +7,11 @@ import com.automate.protocol.IncomingMessageParser;
 import com.automate.protocol.Message;
 import com.automate.protocol.MessageSubParser;
 
-public class ClientIncomingMessageParser extends IncomingMessageParser<ClientProtocolParameters> {
+public class IncomingClientMessageParser extends IncomingMessageParser<ClientProtocolParameters> {
 
 	private HashMap<String, ClientMessageSubParser<?>> subParsers;
 	
-	public ClientIncomingMessageParser() {
+	public IncomingClientMessageParser() {
 		subParsers = new HashMap<String, ClientMessageSubParser<?>>(Message.NUM_MESSAGE_TYPES);
 		subParsers.put(Message.AUTHENTICATION, new ClientAuthenticationMessageSubParser());
 		subParsers.put(Message.NODE_LIST, new ClientNodeListMessageSubParser());

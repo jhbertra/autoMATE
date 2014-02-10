@@ -1,6 +1,7 @@
 package com.automate.protocol.server;
 
 import com.automate.protocol.Message;
+import com.automate.protocol.Message.MessageType;
 import com.automate.util.xml.Attribute;
 
 public class ServerAuthenticationMessage extends Message <ServerProtocolParameters> {
@@ -26,6 +27,11 @@ public class ServerAuthenticationMessage extends Message <ServerProtocolParamete
 		addElement("authentication", true, 	new Attribute("username", username), 
 											new Attribute("response", responseCode + " " + response),
 											new Attribute("session-key", sessionKey));
+	}
+
+	@Override
+	public MessageType getMessageType() {
+		return MessageType.AUTHENTICATION;
 	}
 	
 }

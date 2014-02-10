@@ -1,6 +1,7 @@
 package com.automate.protocol.client;
 
 import com.automate.protocol.Message;
+import com.automate.protocol.Message.MessageType;
 
 public class ClientPingMessage extends Message<ClientProtocolParameters> {
 
@@ -11,6 +12,11 @@ public class ClientPingMessage extends Message<ClientProtocolParameters> {
 	@Override
 	protected void addContent() {
 		addElement("ping", true);
+	}
+
+	@Override
+	public MessageType getMessageType() {
+		return MessageType.PING;
 	}
 	
 }

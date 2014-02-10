@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.automate.models.Node;
 import com.automate.protocol.Message;
+import com.automate.protocol.Message.MessageType;
 import com.automate.util.xml.Attribute;
 import com.automate.util.xml.XmlFormatException;
 
@@ -25,6 +26,11 @@ public class ServerNodeListMessage extends Message <ServerProtocolParameters> {
 		}
 		
 		closeElement();
+	}
+
+	@Override
+	public MessageType getMessageType() {
+		return MessageType.NODE_LIST;
 	}
 
 }

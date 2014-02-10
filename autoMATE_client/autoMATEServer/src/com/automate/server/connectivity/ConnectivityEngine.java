@@ -2,8 +2,9 @@ package com.automate.server.connectivity;
 
 import com.automate.server.connectivity.ConnectivityWatchdogThread.OnClientTimeoutListener;
 import com.automate.server.connectivity.EngineCallback.ClientPingListener;
+import com.automate.server.messaging.IMessageManager;
 
-public class ConnectivityEngine implements OnClientTimeoutListener {
+public class ConnectivityEngine implements OnClientTimeoutListener, IConnectivityManager {
 
 	private boolean terminated;
 	private boolean running;
@@ -13,6 +14,7 @@ public class ConnectivityEngine implements OnClientTimeoutListener {
 	private EngineCallback callback;
 	private Thread executionThread;
 	private final Object loopLock = new Object();
+	private IMessageManager messageManager;
 
 	/**
 	 * Creates a new Connectivity engine.
@@ -35,13 +37,11 @@ public class ConnectivityEngine implements OnClientTimeoutListener {
 		this.interval = pingIntervalSeconds;
 		this.callback = callback;
 		this.timeout = timeout;
-		this.watchdogThread = new ConnectivityWatchdogThread(this);
 	}
 	
-	/**
-	 * Starts the connectivity engine on a background thread.
-	 * @throws IllegalStateException if this method is called after the engine has been
-	 * shutdown.
+	/*
+	 * (non-Javadoc)
+	 * @see com.automate.server.IManager#start()
 	 */
 	public void start() throws IllegalStateException {
 		if(terminated) {
@@ -53,12 +53,6 @@ public class ConnectivityEngine implements OnClientTimeoutListener {
 		synchronized (loopLock) {
 			running = true;
 		}
-		executionThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				engineMainLoop();
-			}
-		}, "Connectivity Engine");
 		executionThread.start();
 	}
 
@@ -71,7 +65,6 @@ public class ConnectivityEngine implements OnClientTimeoutListener {
 				long pingTime = endTime - startTime;
 				try {
 					long waitTime = Math.max(1, (interval * 1000) - pingTime);
-					System.out.println("Connectivity engine sleeping for " + waitTime + " milliseconds.");
 					loopLock.wait(waitTime);
 				} catch (InterruptedException e) {} // release the engine lock and wait for the next ping interval.	
 			}
@@ -81,36 +74,38 @@ public class ConnectivityEngine implements OnClientTimeoutListener {
 	void loopDelegate() {
 		callback.pingAllClients(new ClientPingListener() { // tell the callback to ping all the clients
 			@Override
-			public void clientAdded(ClientId id) {
+			public void clientPinged(String id) {
 				watchdogThread.setTimeout(id, timeout);
 			}
-		});
+		}, messageManager);
 	}
 
 	/**
 	 * Tell the engine that an ack ping has been received.
 	 * @param uid - the uid of the client that has acknowledged the ping
+	 * @return 
 	 * @return true if the engine is waiting for an ack ping from this client.
 	 */
-	public boolean ackPingReceivedFromClient(ClientId uid) {
-		return watchdogThread.cancelTimeout(uid);
+	@Override
+	public boolean handleClientPing(String sessionKey) {
+		watchdogThread.cancelTimeout(sessionKey);
+		return callback.clientPingReceived(sessionKey);
 	}
 
-	/**
-	 * Shuts down the engine. After this call, the engine cannot be restarted.
-	 * @return true if the call had any effect.  false if the engine is already shut down.
+	/*
+	 * (non-Javadoc)
+	 * @see com.automate.server.IManager#terminate()
 	 */
-	public boolean shutdown() {
+	@Override
+	public void terminate() {
 		synchronized (loopLock) {
 			if(!terminated) {
 				terminated = true;
 				running = false;
 				loopLock.notify();
 				this.callback = null;
-				return true;
 			}
 		}
-		return false;
 	}
 
 	/**
@@ -121,8 +116,23 @@ public class ConnectivityEngine implements OnClientTimeoutListener {
 	}
 
 	@Override
-	public void onClientTimeout(ClientId client) {
+	public void onClientTimeout(String client) {
 		callback.connectionLost(client);
 	}
 
+	@Override
+	public void initialize() {
+		this.watchdogThread = new ConnectivityWatchdogThread(this);
+		executionThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				engineMainLoop();
+			}
+		}, "Connectivity Engine");
+	}
+	
+	@Override
+	public void setMessageManager(IMessageManager messageManager) {
+		this.messageManager = messageManager;
+	}
 }

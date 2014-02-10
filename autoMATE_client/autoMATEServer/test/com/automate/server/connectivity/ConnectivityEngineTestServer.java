@@ -63,7 +63,7 @@ public class ConnectivityEngineTestServer {
 										} catch (IOException e) {
 											connectionLost(new ClientId(ClientType.APP, client.getKey()));
 										}
-										listener.clientAdded(new ClientId(ClientType.APP, client.getKey()));
+										listener.clientPinged(new ClientId(ClientType.APP, client.getKey()));
 									}
 								}).start();
 							} else {

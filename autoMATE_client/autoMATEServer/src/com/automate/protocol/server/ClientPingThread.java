@@ -9,9 +9,9 @@ public class ClientPingThread extends Thread {
 	private List<ClientId> onlineClients;
 	private int batchNumber;
 	private int batchSize;
-	private ClientPingCallback callback;
+	private Callback callback;
 	
-	public ClientPingThread(List<ClientId> onlineClients, int batchNumber, int batchSize, ClientPingCallback callback) {
+	public ClientPingThread(List<ClientId> onlineClients, int batchNumber, int batchSize, Callback callback) {
 		this.onlineClients = onlineClients;
 		this.batchNumber = batchNumber;
 		this.batchSize = batchSize;
@@ -26,12 +26,11 @@ public class ClientPingThread extends Thread {
 		int start = batchNumber * batchSize;
 		int end = start + batchSize;
 		for(int i = start; i < end && i < onlineClients.size(); ++i) {
-			callback.pingClient(onlineClients.get(i));
+			callback.clientPinged(onlineClients.get(i));
 		}
 	}
 	
-	interface ClientPingCallback {
-		void pingClient(ClientId id);
+	public interface Callback {
+		public void clientPinged(ClientId id);
 	}
-
 }

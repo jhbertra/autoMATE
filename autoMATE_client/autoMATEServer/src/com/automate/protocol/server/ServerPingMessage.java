@@ -12,5 +12,10 @@ public class ServerPingMessage extends Message<ServerProtocolParameters> {
 	protected void addContent() {
 		addElement("ping", true);
 	}
+
+	@Override
+	public MessageType getMessageType() {
+		return MessageType.PING;
+	}
 	
 }
