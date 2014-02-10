@@ -17,7 +17,7 @@ public abstract class XmlConvertible {
 	 */
 	protected StringBuilder builder;
 	
-	private Stack<ElementTag>openTags;
+	private Stack<ElementTag>openTags = new Stack<ElementTag>();
 	
 	public void toXml(StringBuilder builder, int indentationLevel) throws XmlFormatException {
 		this.indentationLevel = indentationLevel;
@@ -46,6 +46,7 @@ public abstract class XmlConvertible {
 			openTags.push(elementTag);
 			++indentationLevel;
 		}
+		builder.append('\n');
 	}
 	
 	protected void closeElement() throws XmlFormatException {
@@ -56,6 +57,7 @@ public abstract class XmlConvertible {
 		--indentationLevel;
 		indent();
 		tag.appendClosingTagAsXml(builder);
+		builder.append("\n");
 	}
 	
 	public String getInnerXml() {

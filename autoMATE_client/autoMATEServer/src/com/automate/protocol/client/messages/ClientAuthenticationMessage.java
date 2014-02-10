@@ -12,6 +12,12 @@ public class ClientAuthenticationMessage extends Message <ClientProtocolParamete
 	
 	public ClientAuthenticationMessage(ClientProtocolParameters parameters, String username, String password) {
 		super(parameters);
+		if(username == null) {
+			throw new NullPointerException("username was null in ClientAuthenticationMessage");
+		}
+		if(password == null) {
+			throw new NullPointerException("password was null in ClientAuthenticationMessage");
+		}
 		this.username = username;
 		this.password = password;
 	}
