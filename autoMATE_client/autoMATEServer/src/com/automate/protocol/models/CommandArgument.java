@@ -39,15 +39,15 @@ public class CommandArgument<T> extends XmlConvertible {
 			case PERCENT:
 				double percentValue;
 				if(value instanceof String) {
-					percentValue = Double.parseDouble(((String) value).substring(0, ((String) value).indexOf("%"))) / 100.0;
+					percentValue = Double.parseDouble(((String) value).substring(0, ((String) value).indexOf("%")));
 				} else if (value instanceof Double) {
-					percentValue = ((Double)value) / 100.0;
+					percentValue = ((Double)value);
 				} else if (value instanceof Integer) {
-					percentValue = ((Integer)value) / 100.0;
+					percentValue = ((Integer)value);
 				} else {
 					throw new ClassCastException("Cannot convert " + value.getClass().getName() + " to percentage.");
 				}
-				return new CommandArgument<Double>(name, type, percentValue);
+				return new CommandArgument<String>(name, type, String.valueOf(percentValue) + "%");
 			default:
 				return null;
 			}

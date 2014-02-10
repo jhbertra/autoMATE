@@ -18,6 +18,12 @@ public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 	
 	public ClientCommandMessage(ClientProtocolParameters parameters, String nodeId, String name, String commandId, List<CommandArgument<?>> args) {
 		super(parameters);
+		if(nodeId == null) {
+			throw new NullPointerException("nodeId null in ClientCommandMessage.");
+		}
+		if(commandId == null) {
+			throw new NullPointerException("commandId null in ClientCommandMessage.");
+		}
 		this.nodeId = nodeId;
 		this.name = name;
 		this.commandId = commandId;
@@ -26,16 +32,35 @@ public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 
 	@Override
 	protected void addContent() throws XmlFormatException {
-		addElement("node-list", false
-				, new Attribute("node-id", nodeId)
-				, new Attribute("name", name)
-				, new Attribute("command-id", commandId));
-		
-		for(CommandArgument<?> arg : args) {
-			arg.toXml(this.builder, this.indentationLevel);
+		if(args == null || args.isEmpty()) {
+			if(name == null) {
+				addElement("command", true
+						, new Attribute("node-id", nodeId)
+						, new Attribute("command-id", commandId));				
+			} else {
+				addElement("command", true
+						, new Attribute("node-id", nodeId)
+						, new Attribute("name", name)
+						, new Attribute("command-id", commandId));
+			}
+		} else {
+			if(name == null) {
+				addElement("command", false
+						, new Attribute("node-id", nodeId)
+						, new Attribute("command-id", commandId));				
+			} else {
+				addElement("command", false
+						, new Attribute("node-id", nodeId)
+						, new Attribute("name", name)
+						, new Attribute("command-id", commandId));
+			}
+
+			for(CommandArgument<?> arg : args) {
+				arg.toXml(this.builder, this.indentationLevel);
+			}
+			
+			closeElement();
 		}
-		
-		closeElement();
 	}
 
 	@Override

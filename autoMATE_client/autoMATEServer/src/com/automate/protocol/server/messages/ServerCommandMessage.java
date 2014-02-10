@@ -7,12 +7,15 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ServerCommandMessage extends Message<ServerProtocolParameters> {
 
-	private int commandId;
+	private String commandId;
 	private int responseCode;
 	private String message;
 	
-	public ServerCommandMessage(ServerProtocolParameters parameters, int commandId, int responseCode, String message) {
+	public ServerCommandMessage(ServerProtocolParameters parameters, String commandId, int responseCode, String message) {
 		super(parameters);
+		if(commandId == null) {
+			throw new NullPointerException("command-id was null in ServerCommandMessage.");
+		}
 		this.commandId = commandId;
 		this.responseCode = responseCode;
 		this.message = message;
@@ -22,11 +25,11 @@ public class ServerCommandMessage extends Message<ServerProtocolParameters> {
 	protected void addContent() throws XmlFormatException {
 		if(message == null) {
 			addElement("command", true
-					, new Attribute("command-id", String.valueOf(commandId))
+					, new Attribute("command-id", commandId)
 					, new Attribute("response-code", String.valueOf(responseCode)));
 		} else {
 			addElement("command", true
-					, new Attribute("command-id", String.valueOf(commandId))
+					, new Attribute("command-id", commandId)
 					, new Attribute("response-code", String.valueOf(responseCode))
 					, new Attribute("message", message));
 		}
