@@ -25,22 +25,6 @@ public class CommandArgument<T> extends XmlConvertible {
 				, new Attribute("value", value.toString()));
 	}
 
-	public enum Type {
-		STRING,
-		INTEGER,
-		REAL,
-		BOOLEAN,
-		PERCENT,;
-
-		/* (non-Javadoc)
-		 * @see java.lang.Enum#toString()
-		 */
-		@Override
-		public String toString() {
-			return super.toString().toLowerCase();
-		}
-	}
-	
 	public static CommandArgument<?> newCommandArgument(String name, Type type, Object value) {
 		try {
 			switch (type) {
