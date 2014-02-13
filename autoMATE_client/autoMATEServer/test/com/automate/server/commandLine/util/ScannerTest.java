@@ -182,7 +182,7 @@ public class ScannerTest {
 		});
 		subject.setInput("Hello, world!");
 		assertEquals(2, subject.tokenCount());
-		assertMockState(0, null);
+		assertMockState(0, (String[])null);
 	}
 	
 	@Test
