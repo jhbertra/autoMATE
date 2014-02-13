@@ -31,7 +31,9 @@ public class Node extends XmlConvertible {
 				, new Attribute("id", String.valueOf(id))
 				, new Attribute("manufacturer", manufacturerCode)
 				, new Attribute("model", model)
-				, new Attribute("max-version", maxVersion));
+				, new Attribute("max-version", maxVersion)
+				, new Attribute("info-url", infoUrl)
+				, new Attribute("command-list-url", commandListUrl));
 	}
 	
 }

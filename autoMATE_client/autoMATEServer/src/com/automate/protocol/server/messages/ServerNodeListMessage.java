@@ -18,13 +18,17 @@ public class ServerNodeListMessage extends Message <ServerProtocolParameters> {
 
 	@Override
 	protected void addContent() throws XmlFormatException {
-		addElement("node-list", false);
-		
-		for(Node node : nodes) {
-			node.toXml(this.builder, this.indentationLevel);
+		if(nodes == null || nodes.size() == 0) {
+			addElement("node-list", true);
+		} else {			
+			addElement("node-list", false);
+
+			for(Node node : nodes) {
+				node.toXml(this.builder, this.indentationLevel);
+			}
+
+			closeElement();
 		}
-		
-		closeElement();
 	}
 
 	@Override
