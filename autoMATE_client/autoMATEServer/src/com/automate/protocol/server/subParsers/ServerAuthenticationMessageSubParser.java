@@ -47,7 +47,9 @@ public class ServerAuthenticationMessageSubParser extends ServerMessageSubParser
 			} catch(NumberFormatException e) {
 				throw new SAXException("response code malformed, unable to parse code.");
 			}
-			response = responseString.substring(4);
+			if(responseString.length() > 3) {
+				response = responseString.substring(4);
+			}
 		} else {
 			super.startElement(uri, localName, qName, attributes);
 		}

@@ -50,7 +50,7 @@ extends MessageSubParser<M, ServerProtocolParameters> {
 					throw new SAXException("Version parameter value not numeric: " + value, e);
 				}
 			} else if(name.equals("session-valid")) {
-				if(!value.equalsIgnoreCase("false") || !value.equalsIgnoreCase("true")) {
+				if(!value.equalsIgnoreCase("false") && !value.equalsIgnoreCase("true")) {
 					throw new SAXException("session-valid expects a boolean value, got " + value);
 				}
 				sessionValid = Boolean.parseBoolean(value);

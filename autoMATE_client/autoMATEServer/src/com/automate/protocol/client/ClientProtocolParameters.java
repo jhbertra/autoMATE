@@ -29,7 +29,7 @@ public class ClientProtocolParameters extends ProtocolParameters {
 	@Override
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
-			return this.sessionKey == ((ClientProtocolParameters)obj).sessionKey;
+			return this.sessionKey.equals(((ClientProtocolParameters)obj).sessionKey);
 		} else return false;
 	}
 	

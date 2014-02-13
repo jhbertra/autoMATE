@@ -37,8 +37,8 @@ public class ClientAuthenticationMessage extends Message <ClientProtocolParamete
 	@Override
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
-			return 	this.username == ((ClientAuthenticationMessage)obj).username
-					&& this.password == ((ClientAuthenticationMessage)obj).password;
+			return 	this.username.equals(((ClientAuthenticationMessage)obj).username)
+					&& this.password.equals(((ClientAuthenticationMessage)obj).password);
 		} else return false;
 	}
 
