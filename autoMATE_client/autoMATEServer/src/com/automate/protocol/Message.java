@@ -62,6 +62,7 @@ public abstract class Message <P extends ProtocolParameters> extends XmlConverti
 		builder.append("content-type:");
 		builder.append(getMessageType().toString());
 		builder.append('\n');
+		builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 		addElement("message", false);
 		
 		parameters.toXml(builder, this.indentationLevel);

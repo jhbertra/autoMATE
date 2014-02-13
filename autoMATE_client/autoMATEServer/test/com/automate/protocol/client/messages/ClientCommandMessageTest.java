@@ -57,6 +57,7 @@ public class ClientCommandMessageTest {
 			fail(e.getMessage());
 		}
 		String expected = 	"content-type:command\n" +
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
@@ -82,6 +83,7 @@ public class ClientCommandMessageTest {
 			fail(e.getMessage());
 		}
 		String expected = 	"content-type:command\n" +
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
@@ -110,6 +112,7 @@ public class ClientCommandMessageTest {
 			fail(e.getMessage());
 		}
 		String expected = 	"content-type:command\n" +
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
@@ -139,6 +142,7 @@ public class ClientCommandMessageTest {
 			fail(e.getMessage());
 		}
 		String expected = 	"content-type:command\n" +
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
@@ -165,6 +169,7 @@ public class ClientCommandMessageTest {
 			fail(e.getMessage());
 		}
 		String expected = 	"content-type:command\n" +
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
