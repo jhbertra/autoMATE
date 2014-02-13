@@ -14,20 +14,25 @@ public class ServerStatusUpdateMessage extends Message<ServerProtocolParameters>
 	
 	private List<Status<?>> statuses;
 	
-	public ServerStatusUpdateMessage(ServerProtocolParameters parameters, int nodeId) {
+	public ServerStatusUpdateMessage(ServerProtocolParameters parameters, int nodeId, List<Status<?>> statuses) {
 		super(parameters);
 		this.nodeId = nodeId;
+		this.statuses = statuses;
 	}
 
 	@Override
 	protected void addContent() throws XmlFormatException {
-		addElement("status-update", false, new Attribute("node-id", String.valueOf(nodeId)));
-		
-		for(Status<?> status : statuses) {
-			status.toXml(this.builder, this.indentationLevel);
+		if(statuses == null || statuses.size() == 0) {
+			addElement("status-update", true, new Attribute("node-id", String.valueOf(nodeId)));
+		} else {
+			addElement("status-update", false, new Attribute("node-id", String.valueOf(nodeId)));
+			
+			for(Status<?> status : statuses) {
+				status.toXml(this.builder, this.indentationLevel);
+			}
+			
+			closeElement();			
 		}
-		
-		closeElement();
 	}
 
 	@Override
