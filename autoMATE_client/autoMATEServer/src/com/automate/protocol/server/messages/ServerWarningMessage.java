@@ -13,6 +13,9 @@ public class ServerWarningMessage extends Message<ServerProtocolParameters> {
 	
 	public ServerWarningMessage(ServerProtocolParameters parameters, int warningId, int nodeId, String message) {
 		super(parameters);
+		if(message == null) {
+			throw new NullPointerException("message was null in ServerWarningMessage");
+		}
 		this.warningId = warningId;
 		this.nodeId = nodeId;
 		this.message = message;
