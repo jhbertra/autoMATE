@@ -22,5 +22,15 @@ public class ServerProtocolParameters extends ProtocolParameters {
 	protected void addSpecializedParameters() {
 		addSessionValidParameter();
 	}
+
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.ProtocolParameters#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return this.sessionValid == ((ServerProtocolParameters)obj).sessionValid;
+		} else return false;
+	}
 	
 }

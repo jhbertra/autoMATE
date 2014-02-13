@@ -36,4 +36,16 @@ public class ServerNodeListMessage extends Message <ServerProtocolParameters> {
 		return MessageType.NODE_LIST;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return	(this.nodes == null ? 
+						((ServerNodeListMessage)obj).nodes == null 
+						: this.nodes.equals(((ServerNodeListMessage)obj).nodes));
+		} else return false;
+	}
+
 }

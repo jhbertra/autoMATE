@@ -40,4 +40,18 @@ public class ServerCommandMessage extends Message<ServerProtocolParameters> {
 		return MessageType.COMMAND;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return	this.commandId.equals(((ServerCommandMessage)obj).commandId)
+					&& this.responseCode == ((ServerCommandMessage)obj).responseCode
+					&& (this.message == null ? 
+						((ServerCommandMessage)obj).message == null 
+						: this.message.equals(((ServerCommandMessage)obj).message));
+		} else return false;
+	}
+
 }

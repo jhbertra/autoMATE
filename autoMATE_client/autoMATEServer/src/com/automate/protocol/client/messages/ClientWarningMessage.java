@@ -24,4 +24,14 @@ public class ClientWarningMessage extends Message<ClientProtocolParameters> {
 		return MessageType.WARNING;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return 	this.warningId == ((ClientWarningMessage)obj).warningId;
+		} else return false;
+	}
+
 }

@@ -24,4 +24,14 @@ public class ClientStatusUpdateMessage extends Message<ClientProtocolParameters>
 		return MessageType.STATUS_UPDATE;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return 	this.nodeId == ((ClientStatusUpdateMessage)obj).nodeId;
+		} else return false;
+	}
+
 }

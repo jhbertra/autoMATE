@@ -36,5 +36,16 @@ public abstract class ProtocolParameters extends XmlConvertible {
 	protected void addParameter(String name, String value) {
 		addElement("parameter", true, new Attribute("name", name), new Attribute("value", value));
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj.getClass().equals(this.getClass())) {
+			return 	((ProtocolParameters) obj).majorVersion == this.majorVersion
+					&& ((ProtocolParameters) obj).minorVersion == this.minorVersion;
+		} else return false;
+	}
 	
 }

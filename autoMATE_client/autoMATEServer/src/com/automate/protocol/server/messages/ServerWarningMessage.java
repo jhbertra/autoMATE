@@ -34,4 +34,16 @@ public class ServerWarningMessage extends Message<ServerProtocolParameters> {
 		return MessageType.WARNING;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return 	this.warningId == ((ServerWarningMessage)obj).warningId
+					&& this.nodeId == ((ServerWarningMessage)obj).nodeId
+					&& this.message.equals(((ServerWarningMessage)obj).message);
+		} else return false;
+	}
+
 }

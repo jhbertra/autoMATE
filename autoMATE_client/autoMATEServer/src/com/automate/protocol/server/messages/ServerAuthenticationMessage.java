@@ -41,5 +41,18 @@ public class ServerAuthenticationMessage extends Message <ServerProtocolParamete
 	public MessageType getMessageType() {
 		return MessageType.AUTHENTICATION;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return 	this.username == ((ServerAuthenticationMessage)obj).username
+					&& this.responseCode == ((ServerAuthenticationMessage)obj).responseCode
+					&& this.response.equals(((ServerAuthenticationMessage)obj).response)
+					&& this.sessionKey.equals(((ServerAuthenticationMessage)obj).sessionKey);
+		} else return false;
+	}
 	
 }

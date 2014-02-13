@@ -31,4 +31,15 @@ public class ClientAuthenticationMessage extends Message <ClientProtocolParamete
 		return MessageType.AUTHENTICATION;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return 	this.username == ((ClientAuthenticationMessage)obj).username
+					&& this.password == ((ClientAuthenticationMessage)obj).password;
+		} else return false;
+	}
+
 }

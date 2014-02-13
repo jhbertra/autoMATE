@@ -68,4 +68,21 @@ public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 		return MessageType.COMMAND;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return 	this.nodeId.equals(((ClientCommandMessage)obj).nodeId)
+					&& (this.name == null ?
+							((ClientCommandMessage)obj).name == null
+							: this.name.equals(((ClientCommandMessage)obj).name))
+					&& this.commandId.equals(((ClientCommandMessage)obj).commandId)
+					&& (this.args == null ?
+						((ClientCommandMessage)obj).args == null
+						: this.args.equals(((ClientCommandMessage)obj).args));
+		} else return false;
+	}
+
 }

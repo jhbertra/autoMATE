@@ -22,5 +22,15 @@ public class ClientProtocolParameters extends ProtocolParameters {
 	protected void addSpecializedParameters() {
 		addSessionKeyParameter();
 	}
+
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.ProtocolParameters#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return this.sessionKey == ((ClientProtocolParameters)obj).sessionKey;
+		} else return false;
+	}
 	
 }

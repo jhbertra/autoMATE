@@ -40,4 +40,16 @@ public class ServerStatusUpdateMessage extends Message<ServerProtocolParameters>
 		return MessageType.STATUS_UPDATE;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.Message#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(super.equals(obj)) {
+			return	this.nodeId == ((ServerStatusUpdateMessage)obj).nodeId
+					&& (this.statuses == null ? 
+						((ServerStatusUpdateMessage)obj).statuses == null 
+						: this.statuses.equals(((ServerStatusUpdateMessage)obj).statuses));
+		} else return false;
+	}
 }

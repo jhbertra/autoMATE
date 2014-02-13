@@ -86,5 +86,15 @@ public abstract class Message <P extends ProtocolParameters> extends XmlConverti
 	}
 	
 	public abstract MessageType getMessageType();
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj.getClass().equals(this.getClass())) {
+			return ((Message<?>)obj).parameters.equals(this.parameters);
+		} else return false;
+	}
 	
 }
