@@ -5,7 +5,7 @@ import org.xml.sax.SAXException;
 
 import com.automate.protocol.server.messages.ServerWarningMessage;
 
-public class ClientWarningSubParser extends ServerMessageSubParser<ServerWarningMessage> {
+public class ServerWarningSubParser extends ServerMessageSubParser<ServerWarningMessage> {
 
 	private int warningId;
 	private int nodeId;
