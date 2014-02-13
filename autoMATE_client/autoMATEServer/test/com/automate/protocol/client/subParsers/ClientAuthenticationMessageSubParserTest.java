@@ -2,19 +2,11 @@ package com.automate.protocol.client.subParsers;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.client.ClientProtocolParameters;
 import com.automate.protocol.client.messages.ClientAuthenticationMessage;
-import com.automate.util.xml.XmlFormatException;
 
 public class ClientAuthenticationMessageSubParserTest {
 
