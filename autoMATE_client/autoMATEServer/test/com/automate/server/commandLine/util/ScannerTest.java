@@ -60,7 +60,7 @@ public class ScannerTest {
 	public void testAddRule_OneRule() {
 		subject.addRule(new ScannerRule<Void>("abc") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
@@ -72,13 +72,13 @@ public class ScannerTest {
 	public void testAddRule_TwoRulesNoReplace() {
 		subject.addRule(new ScannerRule<Void>("abc") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
 		subject.addRule(new ScannerRule<Void>("abb") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
@@ -90,13 +90,13 @@ public class ScannerTest {
 	public void testAddRule_TwoRulesReplace() {
 		subject.addRule(new ScannerRule<Void>("abc") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
 		subject.addRule(new ScannerRule<Void>("abc") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
@@ -109,13 +109,13 @@ public class ScannerTest {
 		List<ScannerRule<?>> rules = new ArrayList<Scanner.ScannerRule<?>>();
 		rules.add(new ScannerRule<Void>("abc") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
 		rules.add(new ScannerRule<Void>("abb") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				return null;
 			}
 		});
@@ -144,8 +144,8 @@ public class ScannerTest {
 	public void testSetInput_MatchesOneRule() {
 		subject.addRule(new ScannerRule<Void>("Hello, world!") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello, world!");
@@ -157,8 +157,8 @@ public class ScannerTest {
 	public void testSetInput_PartiallyMatchesOneRule() {
 		subject.addRule(new ScannerRule<Void>("Hello") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello, world!");
@@ -170,14 +170,14 @@ public class ScannerTest {
 	public void testSetInput_FullyMatchesTwoRules() {
 		subject.addRule(new ScannerRule<Void>("Hello") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.addRule(new ScannerRule<Void>(", [a-z]+!") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello, world!");
@@ -189,14 +189,14 @@ public class ScannerTest {
 	public void testSetInput_PartiallyMatchesTwoRules() {
 		subject.addRule(new ScannerRule<Void>("Hello") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.addRule(new ScannerRule<Void>("[a-z]+!") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello, world!");
@@ -209,14 +209,14 @@ public class ScannerTest {
 	public void testSetInput_PartiallyMatchesTwoRulesWithTwoErrors() {
 		subject.addRule(new ScannerRule<Void>("Hello") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.addRule(new ScannerRule<Void>(" [a-z]+") {
 			@Override
-			public Token<Void> getToken(String match) {
-				return new Token<Void>();
+			public Token<Void> getToken(String match, int position) {
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello, world!");
@@ -228,16 +228,16 @@ public class ScannerTest {
 	public void testSetInput_TwoConflictingRulesLongerRuleWins() {
 		subject.addRule(new ScannerRule<Void>("Hell") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				rule1 = true;
-				return new Token<Void>();
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.addRule(new ScannerRule<Void>("Hello") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				rule2 = true;
-				return new Token<Void>();
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello");
@@ -251,16 +251,16 @@ public class ScannerTest {
 	public void testSetInput_TwoConflictingRulesEqualLengthFirstRuleWins() {
 		subject.addRule(new ScannerRule<Void>("Hell") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				rule1 = true;
-				return new Token<Void>();
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.addRule(new ScannerRule<Void>("He(ll)?") {
 			@Override
-			public Token<Void> getToken(String match) {
+			public Token<Void> getToken(String match, int position) {
 				rule2 = true;
-				return new Token<Void>(match, position, data, tokenType);
+				return new Token<Void>(match, position, null, position);
 			}			
 		});
 		subject.setInput("Hello");
