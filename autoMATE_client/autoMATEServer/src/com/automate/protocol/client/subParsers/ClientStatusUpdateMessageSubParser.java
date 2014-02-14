@@ -11,7 +11,7 @@ import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.client.messages.ClientStatusUpdateMessage;
 import com.automate.util.xml.XmlFormatException;
 
-public class ClientStatusUpdateSubParser extends ClientMessageSubParser<ClientStatusUpdateMessage> {
+public class ClientStatusUpdateMessageSubParser extends ClientMessageSubParser<ClientStatusUpdateMessage> {
 
 	private int nodeId;
 	
