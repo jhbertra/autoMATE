@@ -91,14 +91,14 @@ public class ServerCommandMessageSubParserTest {
 	@Test
 	public void testProperlyFormattedMessageMessage() throws Exception {
 		subject = new ServerCommandMessageSubParser();
-		ServerCommandMessage expected = new ServerCommandMessage(parameters, "0", 200, null);
+		ServerCommandMessage expected = new ServerCommandMessage(parameters, 0, 200, null);
 		assertEquals(expected, subject.parseXml(xml4));
 	}
 	
 	@Test
 	public void testProperlyFormattedMessageWithMessage() throws Exception {
 		subject = new ServerCommandMessageSubParser();
-		ServerCommandMessage expected = new ServerCommandMessage(parameters, "0", 200, "command succeeded!");
+		ServerCommandMessage expected = new ServerCommandMessage(parameters, 0, 200, "command succeeded!");
 		assertEquals(expected, subject.parseXml(xml5));
 	}
 

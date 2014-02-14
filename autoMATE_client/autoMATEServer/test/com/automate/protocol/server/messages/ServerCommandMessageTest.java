@@ -13,19 +13,14 @@ public class ServerCommandMessageTest {
 	
 	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
 	
-	@Test(expected=NullPointerException.class)
-	public void testNullArgs() {
-		subject = new ServerCommandMessage(parameters, null, 0, null);
-	}
-	
 	@Test
 	public void testNullMssage() {
-		subject = new ServerCommandMessage(parameters, "command", 0, null);
+		subject = new ServerCommandMessage(parameters, 0, 0, null);
 	}
 	
 	@Test
 	public void testToXmlNoNulls() {
-		subject = new ServerCommandMessage(parameters, "command", 200, "message");
+		subject = new ServerCommandMessage(parameters, 0, 200, "message");
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -40,7 +35,7 @@ public class ServerCommandMessageTest {
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
-							"\t\t<command command-id=\"command\" response-code=\"200\" message=\"message\" />\n" +
+							"\t\t<command command-id=\"0\" response-code=\"200\" message=\"message\" />\n" +
 							"\t</content>\n" +
 							"</message>\n";
 		String actual = builder.toString();
@@ -49,7 +44,7 @@ public class ServerCommandMessageTest {
 	
 	@Test
 	public void testToXmlNullMessage() {
-		subject = new ServerCommandMessage(parameters, "command", 200, null);
+		subject = new ServerCommandMessage(parameters, 0, 200, null);
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -64,7 +59,7 @@ public class ServerCommandMessageTest {
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
-							"\t\t<command command-id=\"command\" response-code=\"200\" />\n" +
+							"\t\t<command command-id=\"0\" response-code=\"200\" />\n" +
 							"\t</content>\n" +
 							"</message>\n";
 		String actual = builder.toString();
