@@ -1,5 +1,10 @@
 package com.automate.server;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
 import com.automate.server.connectivity.ConnectivityEngine;
 import com.automate.server.connectivity.IConnectivityManager;
 import com.automate.server.database.DatabaseManager;
@@ -23,13 +28,24 @@ public class AutomateServer {
 	
 	private boolean started = false;
 	
-	private static final int MAJOR_VERSION = 0;
+	private static final int MAJOR_VERSION = 1;
 	private static final int MINOR_VERSION = 0;
 	
 	private Api api;
 	
 	public void initSubsystems() {
-		dbManager = new DatabaseManager(3306, "localhost", "root", "quinoa");
+		Properties connectionProperties = new Properties();
+		connectionProperties.put("user", "root");
+		connectionProperties.put("password", "quinoa");
+		Connection connection;
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", connectionProperties);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			System.exit(0);
+			return;
+		}
+		dbManager = new DatabaseManager(connection);
 		SessionManager sessionManager = new SessionManager(MAJOR_VERSION, MINOR_VERSION);
 		securityManager = new SecurityManagerImpl(sessionManager, dbManager, MAJOR_VERSION, MINOR_VERSION);
 		connectivityManager = new ConnectivityEngine(30, 15, sessionManager);
