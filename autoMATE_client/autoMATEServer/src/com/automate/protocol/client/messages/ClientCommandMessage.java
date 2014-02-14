@@ -80,7 +80,7 @@ public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 							: this.name.equals(((ClientCommandMessage)obj).name))
 					&& this.commandId.equals(((ClientCommandMessage)obj).commandId)
 					&& (this.args == null ?
-						((ClientCommandMessage)obj).args == null
+						(((ClientCommandMessage)obj).args == null || ((ClientCommandMessage)obj).args.isEmpty())
 						: this.args.equals(((ClientCommandMessage)obj).args));
 		} else return false;
 	}
