@@ -5,11 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import com.automate.protocol.models.Node;
 import com.automate.protocol.server.ServerProtocolParameters;
-import com.automate.protocol.server.messages.ServerCommandMessage;
 import com.automate.protocol.server.messages.ServerNodeListMessage;
 
 public class ServerNodeListMessageSubParserTest {
