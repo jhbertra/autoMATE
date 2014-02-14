@@ -7,9 +7,9 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ClientWarningMessage extends Message<ClientProtocolParameters> {
 
-	private int warningId;
+	public final long warningId;
 	
-	public ClientWarningMessage(ClientProtocolParameters parameters, int warningId) {
+	public ClientWarningMessage(ClientProtocolParameters parameters, long warningId) {
 		super(parameters);
 		this.warningId = warningId;
 	}

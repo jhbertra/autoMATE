@@ -19,6 +19,7 @@ extends MessageSubParser<M, ServerProtocolParameters> {
 	protected ServerProtocolParameters parameters;
 	private int majorVersion, minorVersion;
 	private boolean sessionValid;
+	private String sessionKey;
 
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.MessageSubParser#parseXml(java.lang.String)
@@ -30,6 +31,7 @@ extends MessageSubParser<M, ServerProtocolParameters> {
 		majorVersion = 0;
 		minorVersion = 0;
 		sessionValid = false;
+		sessionKey = null;
 		return super.parseXml(xml);
 	}
 
@@ -40,7 +42,7 @@ extends MessageSubParser<M, ServerProtocolParameters> {
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		if(qName.equals("parameters")) {
-			parameters = new ServerProtocolParameters(majorVersion, minorVersion, sessionValid);
+			parameters = new ServerProtocolParameters(majorVersion, minorVersion, sessionValid, sessionKey);
 		}
 	}
 
@@ -72,6 +74,8 @@ extends MessageSubParser<M, ServerProtocolParameters> {
 					throw new SAXException("session-valid expects a boolean value, got " + value);
 				}
 				sessionValid = Boolean.parseBoolean(value);
+			} else if(name.equals("session-key")) {
+				sessionKey = value;
 			} else {
 				throw new SAXException("parameter " + name + " invalid.");
 			}

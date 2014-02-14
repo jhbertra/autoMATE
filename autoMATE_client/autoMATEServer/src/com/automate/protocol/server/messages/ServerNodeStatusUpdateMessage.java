@@ -1,15 +1,16 @@
-package com.automate.protocol.client.messages;
+package com.automate.protocol.server.messages;
 
 import com.automate.protocol.Message;
 import com.automate.protocol.client.ClientProtocolParameters;
+import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.util.xml.Attribute;
 import com.automate.util.xml.XmlFormatException;
 
-public class ClientStatusUpdateMessage extends Message<ClientProtocolParameters> {
+public class ServerNodeStatusUpdateMessage extends Message<ServerProtocolParameters> {
 
 	public final long nodeId;
 	
-	public ClientStatusUpdateMessage(ClientProtocolParameters parameters, long nodeId) {
+	public ServerNodeStatusUpdateMessage(ServerProtocolParameters parameters, long nodeId) {
 		super(parameters);
 		this.nodeId = nodeId;
 	}
@@ -30,7 +31,7 @@ public class ClientStatusUpdateMessage extends Message<ClientProtocolParameters>
 	@Override
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
-			return 	this.nodeId == ((ClientStatusUpdateMessage)obj).nodeId;
+			return 	this.nodeId == ((ServerNodeStatusUpdateMessage)obj).nodeId;
 		} else return false;
 	}
 

@@ -18,9 +18,9 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ClientCommandMessageSubParser extends ClientMessageSubParser<ClientCommandMessage> {
 	
-	private String nodeId;
+	private long nodeId;
 	private String name;
-	private String commandId;
+	private long commandId;
 	private List<CommandArgument<?>> args = new ArrayList<CommandArgument<?>>();
 	
 	/* (non-Javadoc)
@@ -30,9 +30,9 @@ public class ClientCommandMessageSubParser extends ClientMessageSubParser<Client
 	public ClientCommandMessage parseXml(String xml) throws XmlFormatException,
 			IOException, MessageFormatException, SAXException,
 			ParserConfigurationException {
-		nodeId = null;
+		nodeId = -1;
 		name = null;
-		commandId = null;
+		commandId = -1;
 		args = new ArrayList<CommandArgument<?>>();
 		return super.parseXml(xml);
 	}
@@ -75,15 +75,17 @@ public class ClientCommandMessageSubParser extends ClientMessageSubParser<Client
 			}
 			args.add(CommandArgument.newCommandArgument(name, type, value));
 		} else if(qName.equals("command")) {
-			nodeId = attributes.getValue("node-id");
+			String nodeIdString = attributes.getValue("node-id");
 			name = attributes.getValue("name");
-			commandId = attributes.getValue("command-id");
-			if(nodeId == null) {
+			String commandIdString = attributes.getValue("command-id");
+			if(nodeIdString == null) {
 				throw new SAXException("node-id was null");
 			}
-			if(commandId == null) {
+			if(commandIdString == null) {
 				throw new SAXException("command-id was null");
 			}
+			nodeId = Long.parseLong(nodeIdString);
+			commandId = Long.parseLong(commandIdString);
 		} else {
 			super.startElement(uri, localName, qName, attributes);
 		}

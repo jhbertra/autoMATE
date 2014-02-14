@@ -9,8 +9,12 @@ import com.automate.server.security.ISecurityManager;
 
 public class AuthenticationMessageHandler implements IMessageHandler<ClientAuthenticationMessage, AuthenticationMessageHandlerParams> {
 
-	ISecurityManager securityManager;
+	private ISecurityManager securityManager;
 	
+	public AuthenticationMessageHandler(ISecurityManager securityManager) {
+		this.securityManager = securityManager;
+	}
+
 	@Override
 	public Message<ServerProtocolParameters> handleMessage(ServerProtocolParameters responseParameters, 
 			ClientAuthenticationMessage message, AuthenticationMessageHandlerParams params) {

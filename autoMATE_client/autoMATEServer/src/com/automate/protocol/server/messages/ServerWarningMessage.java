@@ -7,11 +7,11 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ServerWarningMessage extends Message<ServerProtocolParameters> {
 
-	private int warningId;
-	private int nodeId;
-	private String message;
+	public final long warningId;
+	public final long nodeId;
+	public final String message;
 	
-	public ServerWarningMessage(ServerProtocolParameters parameters, int warningId, int nodeId, String message) {
+	public ServerWarningMessage(ServerProtocolParameters parameters, long warningId, long nodeId, String message) {
 		super(parameters);
 		if(message == null) {
 			throw new NullPointerException("message was null in ServerWarningMessage");

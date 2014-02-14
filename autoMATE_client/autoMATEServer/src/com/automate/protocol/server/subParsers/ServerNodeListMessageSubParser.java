@@ -71,9 +71,9 @@ public class ServerNodeListMessageSubParser extends ServerMessageSubParser<Serve
 			} else if(commandListUrl == null) {
 				throw new SAXException("command-list-url was null.");
 			}
-			int id;
+			long id;
 			try {
-				id = Integer.parseInt(idString);
+				id = Long.parseLong(idString);
 			} catch (RuntimeException e) {
 				throw new SAXException("Unable to parse node id.");
 			}

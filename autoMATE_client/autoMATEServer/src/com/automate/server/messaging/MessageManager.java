@@ -56,8 +56,8 @@ public class MessageManager implements IMessageManager {
 	public void initialize() throws Exception {
 		receiveThread = new PacketReceiveThread(Executors.newFixedThreadPool(25), this);
 		packetSendThreadpool = Executors.newFixedThreadPool(25);
-		handlers.put(MessageType.AUTHENTICATION, new AuthenticationMessageHandler());
-		handlers.put(MessageType.NODE_LIST, new NodeListMessageHandler());
+		handlers.put(MessageType.AUTHENTICATION, new AuthenticationMessageHandler(securityManager));
+		handlers.put(MessageType.NODE_LIST, new NodeListMessageHandler(dbManager, securityManager));
 		handlers.put(MessageType.PING, new PingMessageHandler(connectivityManager));
 		this.connectivityManager.setMessageManager(this);
 	}
@@ -73,13 +73,13 @@ public class MessageManager implements IMessageManager {
 	}
 
 	@Override
-	public void sendMessage(Message<ServerProtocolParameters> message, String sessionKey) {
-		sendMessage(message, sessionKey, null);
+	public void sendMessage(Message<ServerProtocolParameters> message) {
+		sendMessage(message, null);
 	}
 
 	@Override
-	public void sendMessage(final Message<ServerProtocolParameters> message, String sessionKey, final MessageSentListener listener) {
-		final String address = securityManager.getIpAddress(sessionKey);
+	public void sendMessage(final Message<ServerProtocolParameters> message, final MessageSentListener listener) {
+		final String address = securityManager.getIpAddress(message.getParameters().sessionKey);
 		packetSendThreadpool.submit(new Runnable() {
 			@Override
 			public void run() {

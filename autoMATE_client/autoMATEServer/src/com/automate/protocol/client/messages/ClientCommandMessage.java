@@ -10,20 +10,14 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 
-	private String nodeId;
-	private String name;
-	private String commandId;
+	public final long nodeId;
+	public final String name;
+	public final long commandId;
 	
-	private List<CommandArgument<?>> args;
+	public final List<CommandArgument<?>> args;
 	
-	public ClientCommandMessage(ClientProtocolParameters parameters, String nodeId, String name, String commandId, List<CommandArgument<?>> args) {
+	public ClientCommandMessage(ClientProtocolParameters parameters, long nodeId, String name, long commandId, List<CommandArgument<?>> args) {
 		super(parameters);
-		if(nodeId == null) {
-			throw new NullPointerException("nodeId null in ClientCommandMessage.");
-		}
-		if(commandId == null) {
-			throw new NullPointerException("commandId null in ClientCommandMessage.");
-		}
 		this.nodeId = nodeId;
 		this.name = name;
 		this.commandId = commandId;
@@ -35,24 +29,24 @@ public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 		if(args == null || args.isEmpty()) {
 			if(name == null) {
 				addElement("command", true
-						, new Attribute("node-id", nodeId)
-						, new Attribute("command-id", commandId));				
+						, new Attribute("node-id", String.valueOf(nodeId))
+						, new Attribute("command-id", String.valueOf(commandId)));				
 			} else {
 				addElement("command", true
-						, new Attribute("node-id", nodeId)
+						, new Attribute("node-id", String.valueOf(nodeId))
 						, new Attribute("name", name)
-						, new Attribute("command-id", commandId));
+						, new Attribute("command-id", String.valueOf(commandId)));
 			}
 		} else {
 			if(name == null) {
 				addElement("command", false
-						, new Attribute("node-id", nodeId)
-						, new Attribute("command-id", commandId));				
+						, new Attribute("node-id", String.valueOf(nodeId))
+						, new Attribute("command-id", String.valueOf(commandId)));				
 			} else {
 				addElement("command", false
-						, new Attribute("node-id", nodeId)
+						, new Attribute("node-id", String.valueOf(nodeId))
 						, new Attribute("name", name)
-						, new Attribute("command-id", commandId));
+						, new Attribute("command-id", String.valueOf(commandId)));
 			}
 
 			for(CommandArgument<?> arg : args) {
@@ -74,11 +68,11 @@ public class ClientCommandMessage extends Message<ClientProtocolParameters> {
 	@Override
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
-			return 	this.nodeId.equals(((ClientCommandMessage)obj).nodeId)
+			return 	this.nodeId == ((ClientCommandMessage)obj).nodeId
 					&& (this.name == null ?
 							((ClientCommandMessage)obj).name == null
 							: this.name.equals(((ClientCommandMessage)obj).name))
-					&& this.commandId.equals(((ClientCommandMessage)obj).commandId)
+					&& this.commandId == ((ClientCommandMessage)obj).commandId
 					&& (this.args == null ?
 						(((ClientCommandMessage)obj).args == null || ((ClientCommandMessage)obj).args.isEmpty())
 						: this.args.equals(((ClientCommandMessage)obj).args));

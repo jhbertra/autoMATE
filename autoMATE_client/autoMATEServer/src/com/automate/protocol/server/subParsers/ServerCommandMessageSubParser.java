@@ -13,7 +13,7 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ServerCommandMessageSubParser extends ServerMessageSubParser<ServerCommandMessage> {
 	
-	private String commandId;
+	private long commandId;
 	private int responseCode;
 	private String commandMessage;
 	
@@ -24,7 +24,7 @@ public class ServerCommandMessageSubParser extends ServerMessageSubParser<Server
 	public ServerCommandMessage parseXml(String xml) throws XmlFormatException,
 			IOException, MessageFormatException, SAXException,
 			ParserConfigurationException {
-		commandId = null;
+		commandId = 0;
 		responseCode = 0;
 		commandMessage = null;
 		return super.parseXml(xml);
@@ -50,10 +50,10 @@ public class ServerCommandMessageSubParser extends ServerMessageSubParser<Server
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
 		if(qName.equals("command")) {
-			commandId = attributes.getValue("command-id");
+			String commandIdString = attributes.getValue("command-id");
 			String responseString = attributes.getValue("response-code");
 			commandMessage = attributes.getValue("message");
-			if(commandId == null || commandId.isEmpty()) {
+			if(commandIdString == null || commandIdString.isEmpty()) {
 				throw new SAXException("command-id was null.");
 			} else if(responseString == null || responseString.isEmpty()) {
 				throw new SAXException("response-code was null.");
@@ -62,6 +62,11 @@ public class ServerCommandMessageSubParser extends ServerMessageSubParser<Server
 				responseCode = Integer.parseInt(responseString);
 			} catch(NumberFormatException e) {
 				throw new SAXException("response code malformed, unable to parse code.");
+			}
+			try {
+				commandId = Long.parseLong(commandIdString);
+			} catch(NumberFormatException e) {
+				throw new SAXException("command-id malformed, unable to parse command-id.");
 			}
 		} else {
 			super.startElement(uri, localName, qName, attributes);

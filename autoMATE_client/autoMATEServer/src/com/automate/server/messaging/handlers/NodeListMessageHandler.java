@@ -14,9 +14,15 @@ import com.automate.server.security.ISecurityManager;
 public class NodeListMessageHandler implements
 		IMessageHandler<ClientNodeListMessage, Void> {
 
-	IDatabaseManager dbManager;
-	ISecurityManager securityManager;
+	private IDatabaseManager dbManager;
+	private ISecurityManager securityManager;
 	
+	public NodeListMessageHandler(IDatabaseManager dbManager,
+			ISecurityManager securityManager) {
+		this.dbManager = dbManager;
+		this.securityManager = securityManager;
+	}
+
 	@Override
 	public Message<ServerProtocolParameters> handleMessage(
 			ServerProtocolParameters responseParameters,

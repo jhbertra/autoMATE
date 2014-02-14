@@ -13,7 +13,7 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ClientStatusUpdateMessageSubParser extends ClientMessageSubParser<ClientStatusUpdateMessage> {
 
-	private int nodeId;
+	private long nodeId;
 	
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.client.subParsers.ClientMessageSubParser#parseXml(java.lang.String)
@@ -47,7 +47,7 @@ public class ClientStatusUpdateMessageSubParser extends ClientMessageSubParser<C
 			Attributes attributes) throws SAXException {
 		if(qName.equals("status-update")) {
 			try {				
-				nodeId = Integer.parseInt(attributes.getValue("node-id"));
+				nodeId = Long.parseLong(attributes.getValue("node-id"));
 			} catch(NumberFormatException e) {
 				throw new SAXException(e);
 			}

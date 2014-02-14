@@ -13,10 +13,10 @@ import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.models.Status;
 import com.automate.protocol.models.Type;
 import com.automate.protocol.models.Type.TypeFormatException;
-import com.automate.protocol.server.messages.ServerStatusUpdateMessage;
+import com.automate.protocol.server.messages.ServerClientStatusUpdateMessage;
 import com.automate.util.xml.XmlFormatException;
 
-public class ServerStatusUpdateMessageSubParser extends ServerMessageSubParser<ServerStatusUpdateMessage> {
+public class ServerClientStatusUpdateMessageSubParser extends ServerMessageSubParser<ServerClientStatusUpdateMessage> {
 	
 	private int nodeId;
 	private List<Status<?>> statuses = new ArrayList<Status<?>>();
@@ -28,7 +28,7 @@ public class ServerStatusUpdateMessageSubParser extends ServerMessageSubParser<S
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		if(qName.equals("content")) {
-			this.message = new ServerStatusUpdateMessage(parameters, nodeId, statuses);
+			this.message = new ServerClientStatusUpdateMessage(parameters, nodeId, statuses);
 		} else {
 			super.endElement(uri, localName, qName);
 		}
@@ -38,7 +38,7 @@ public class ServerStatusUpdateMessageSubParser extends ServerMessageSubParser<S
 	 * @see com.automate.protocol.server.subParsers.ServerMessageSubParser#parseXml(java.lang.String)
 	 */
 	@Override
-	public ServerStatusUpdateMessage parseXml(String xml)
+	public ServerClientStatusUpdateMessage parseXml(String xml)
 			throws XmlFormatException, IOException, MessageFormatException,
 			SAXException, ParserConfigurationException {
 		this.nodeId = -1;

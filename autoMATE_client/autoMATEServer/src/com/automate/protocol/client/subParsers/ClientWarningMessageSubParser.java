@@ -13,7 +13,7 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ClientWarningMessageSubParser extends ClientMessageSubParser<ClientWarningMessage> {
 
-	private int warningId;
+	private long warningId;
 	
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.client.subParsers.ClientMessageSubParser#parseXml(java.lang.String)
@@ -47,7 +47,7 @@ public class ClientWarningMessageSubParser extends ClientMessageSubParser<Client
 			Attributes attributes) throws SAXException {
 		if(qName.equals("warning")) {
 			try {				
-				warningId = Integer.parseInt(attributes.getValue("warning-id"));
+				warningId = Long.parseLong(attributes.getValue("warning-id"));
 			} catch(NumberFormatException e) {
 				throw new SAXException(e);
 			}
