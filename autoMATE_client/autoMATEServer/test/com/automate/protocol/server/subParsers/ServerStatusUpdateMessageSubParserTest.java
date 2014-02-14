@@ -12,17 +12,18 @@ import com.automate.protocol.models.Status;
 import com.automate.protocol.models.Type;
 import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.protocol.server.messages.ServerPingMessage;
-import com.automate.protocol.server.messages.ServerStatusUpdateMessage;
+import com.automate.protocol.server.messages.ServerClientStatusUpdateMessage;
 
 public class ServerStatusUpdateMessageSubParserTest {
 
-	private ServerStatusUpdateMessageSubParser subject;
+	private ServerClientStatusUpdateMessageSubParser subject;
 	
 	private String xml1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
 			"<message >\n" +
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<status-update />\n" +
@@ -34,6 +35,7 @@ public class ServerStatusUpdateMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<status-update node-id=\"0\" />\n" +
@@ -45,6 +47,7 @@ public class ServerStatusUpdateMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<status-update node-id=\"0\" >\n" +
@@ -53,27 +56,27 @@ public class ServerStatusUpdateMessageSubParserTest {
 			"\t</content>\n" +
 			"</message>\n";
 	
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
+	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true, "session");
 	
 	@Test(expected=SAXException.class)
 	public void testNoNodeId() throws Exception {
-		subject = new ServerStatusUpdateMessageSubParser();
+		subject = new ServerClientStatusUpdateMessageSubParser();
 		subject.parseXml(xml1);
 	}
 	
 	@Test
 	public void testNoStatuses() throws Exception {
-		subject = new ServerStatusUpdateMessageSubParser();
-		ServerStatusUpdateMessage expected = new ServerStatusUpdateMessage(parameters, 0, null);
+		subject = new ServerClientStatusUpdateMessageSubParser();
+		ServerClientStatusUpdateMessage expected = new ServerClientStatusUpdateMessage(parameters, 0, null);
 		assertEquals(expected, subject.parseXml(xml2));
 	}
 	
 	@Test
 	public void testOneStatus() throws Exception {
-		subject = new ServerStatusUpdateMessageSubParser();
+		subject = new ServerClientStatusUpdateMessageSubParser();
 		ArrayList<Status<?>>statuses = new ArrayList<Status<?>>();
 		statuses.add(Status.newStatus("Temperature", Type.INTEGER, 375));
-		ServerStatusUpdateMessage expected = new ServerStatusUpdateMessage(parameters, 0, statuses);
+		ServerClientStatusUpdateMessage expected = new ServerClientStatusUpdateMessage(parameters, 0, statuses);
 		assertEquals(expected, subject.parseXml(xml3));
 	}
 	

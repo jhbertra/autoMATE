@@ -18,6 +18,7 @@ public class ServerCommandMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<command />\n" +
@@ -29,6 +30,7 @@ public class ServerCommandMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<command response-code=\"200\" message=\"command succeeded!\" />\n" +
@@ -40,6 +42,7 @@ public class ServerCommandMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<command command-id=\"0\" message=\"command succeeded!\" />\n" +
@@ -51,6 +54,7 @@ public class ServerCommandMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<command command-id=\"0\" response-code=\"200\" />\n" +
@@ -62,13 +66,14 @@ public class ServerCommandMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<command command-id=\"0\" response-code=\"200\" message=\"command succeeded!\" />\n" +
 			"\t</content>\n" +
 			"</message>\n";
 	
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
+	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true, "session");
 	
 	@Test(expected=SAXException.class)
 	public void testNoAttributes() throws Exception {

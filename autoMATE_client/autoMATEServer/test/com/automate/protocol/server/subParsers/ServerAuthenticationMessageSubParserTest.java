@@ -17,6 +17,7 @@ public class ServerAuthenticationMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<authentication />\n" +
@@ -28,6 +29,7 @@ public class ServerAuthenticationMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<authentication response=\"200 OK\" session-key=\"session\" />\n" +
@@ -39,6 +41,7 @@ public class ServerAuthenticationMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<authentication username=\"username\" session-key=\"session\" />\n" +
@@ -50,6 +53,7 @@ public class ServerAuthenticationMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<authentication username=\"username\" response=\"200 OK\" />\n" +
@@ -61,6 +65,7 @@ public class ServerAuthenticationMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<authentication username=\"username\" response=\"200\" session-key=\"session\" />\n" +
@@ -72,13 +77,14 @@ public class ServerAuthenticationMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<authentication username=\"username\" response=\"200 OK\" session-key=\"session\" />\n" +
 			"\t</content>\n" +
 			"</message>\n";
 	
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
+	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true, "session");
 	
 	@Test(expected=SAXException.class)
 	public void testNoUsernameOrResponseOrSessionKey() throws Exception {

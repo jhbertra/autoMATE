@@ -8,13 +8,13 @@ import com.automate.protocol.server.ServerProtocolParameters;
 import com.automate.util.xml.Attribute;
 import com.automate.util.xml.XmlFormatException;
 
-public class ServerStatusUpdateMessage extends Message<ServerProtocolParameters> {
+public class ServerClientStatusUpdateMessage extends Message<ServerProtocolParameters> {
 	
 	public final long nodeId;
 	
 	public final List<Status<?>> statuses;
 	
-	public ServerStatusUpdateMessage(ServerProtocolParameters parameters, long nodeId, List<Status<?>> statuses) {
+	public ServerClientStatusUpdateMessage(ServerProtocolParameters parameters, long nodeId, List<Status<?>> statuses) {
 		super(parameters);
 		this.nodeId = nodeId;
 		this.statuses = statuses;
@@ -46,10 +46,10 @@ public class ServerStatusUpdateMessage extends Message<ServerProtocolParameters>
 	@Override
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
-			return	this.nodeId == ((ServerStatusUpdateMessage)obj).nodeId
+			return	this.nodeId == ((ServerClientStatusUpdateMessage)obj).nodeId
 					&& (this.statuses == null ? 
-						(((ServerStatusUpdateMessage)obj).statuses == null || ((ServerStatusUpdateMessage)obj).statuses.isEmpty()) 
-						: this.statuses.equals(((ServerStatusUpdateMessage)obj).statuses));
+						(((ServerClientStatusUpdateMessage)obj).statuses == null || ((ServerClientStatusUpdateMessage)obj).statuses.isEmpty()) 
+						: this.statuses.equals(((ServerClientStatusUpdateMessage)obj).statuses));
 		} else return false;
 	}
 }

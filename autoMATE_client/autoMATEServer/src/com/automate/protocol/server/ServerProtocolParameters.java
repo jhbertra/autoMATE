@@ -7,11 +7,13 @@ import com.automate.protocol.ProtocolParameters;
  */
 public class ServerProtocolParameters extends ProtocolParameters {
 
-	private boolean sessionValid;
+	public final boolean sessionValid;
+	public final String sessionKey;
 
-	public ServerProtocolParameters(int majorVersion, int minorVersion, boolean sessionValid) {
+	public ServerProtocolParameters(int majorVersion, int minorVersion, boolean sessionValid, String sessionKey) {
 		super(majorVersion, minorVersion);
 		this.sessionValid = sessionValid;
+		this.sessionKey = sessionKey;
 	}
 
 	private void addSessionValidParameter() {
@@ -21,6 +23,11 @@ public class ServerProtocolParameters extends ProtocolParameters {
 	@Override
 	protected void addSpecializedParameters() {
 		addSessionValidParameter();
+		addSessionKeyParameter();
+	}
+
+	private void addSessionKeyParameter() {
+		addParameter("session-key", String.valueOf(sessionKey));
 	}
 
 	/* (non-Javadoc)
@@ -29,7 +36,8 @@ public class ServerProtocolParameters extends ProtocolParameters {
 	@Override
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
-			return this.sessionValid == ((ServerProtocolParameters)obj).sessionValid;
+			return 	this.sessionValid == ((ServerProtocolParameters)obj).sessionValid
+					&& this.sessionKey.equals(((ServerProtocolParameters)obj).sessionKey);
 		} else return false;
 	}
 	

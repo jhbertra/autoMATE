@@ -60,10 +60,22 @@ public class SecurityManagerImpl implements ISecurityManager {
 	@Override
 	public ServerProtocolParameters getResponseParameters(ClientProtocolParameters parameters) {
 		if(sessionManager.sessionValid(parameters.sessionKey)) {
-			return new ServerProtocolParameters(majorVersion, minorVersion, true);
+			return new ServerProtocolParameters(majorVersion, minorVersion, true, parameters.sessionKey);
 		} else {
-			return new ServerProtocolParameters(majorVersion, minorVersion, false);
+			return new ServerProtocolParameters(majorVersion, minorVersion, false, parameters.sessionKey);
 		}
+	}
+
+	@Override
+	public String getSessionKeyForNode(long nodeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getSessionKeyForUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -103,7 +103,7 @@ public class SessionManager implements ISessionManager, EngineCallback {
 			for(final String data : activeSessions) {
 				if(!pingedClients.contains(data)) {
 					messageManager.sendMessage(new ServerPingMessage(
-							new ServerProtocolParameters(majorVersion, minorVersion, true)), data, new MessageSentListener() {
+							new ServerProtocolParameters(majorVersion, minorVersion, true, data)), new MessageSentListener() {
 								@Override
 								public void messageSent() {
 									listener.clientPinged(data);
