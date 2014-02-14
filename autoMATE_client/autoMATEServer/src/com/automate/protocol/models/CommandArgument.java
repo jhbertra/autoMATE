@@ -24,7 +24,37 @@ public class CommandArgument<T> extends XmlConvertible {
 				, new Attribute("type", type.toString())
 				, new Attribute("value", value.toString()));
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof CommandArgument<?>) {
+			return 	((CommandArgument) obj).name.equals(name)
+					&& ((CommandArgument) obj).type.equals(type)
+					&& ((CommandArgument) obj).value.equals(value);
+		} else return false;
+	}
 
+	public static CommandArgument<?> newCommandArgument(String name, Type type, String value) {
+			switch (type) {
+			case STRING:
+				return new CommandArgument<String>(name, type, value);
+			case INTEGER:
+				return new CommandArgument<Integer>(name, type, Integer.parseInt(value));
+			case REAL:
+				return new CommandArgument<Double>(name, type, Double.parseDouble(value));
+			case BOOLEAN:
+				return new CommandArgument<Boolean>(name, type, Boolean.parseBoolean(value));
+			case PERCENT:
+				double percentValue = Double.parseDouble(((String) value).substring(0, ((String) value).indexOf("%")));
+				return new CommandArgument<String>(name, type, String.valueOf(percentValue) + "%");
+			default:
+				return null;
+			}
+	}
+	
 	public static CommandArgument<?> newCommandArgument(String name, Type type, Object value) {
 		try {
 			switch (type) {
