@@ -17,6 +17,8 @@ local.properties
 *.settings/
 *.loadpath
 
+autoMATE_client/autoMATEClient/.metadata
+
 autoMATE_client/autoMATEClient/*.pydevproject
 autoMATE_client/autoMATEClient/*.project
 autoMATE_client/autoMATEClient/*.metadata
