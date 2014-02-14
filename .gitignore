@@ -17,6 +17,36 @@ local.properties
 *.settings/
 *.loadpath
 
+autoMATE_client/autoMATEClient/*.pydevproject
+autoMATE_client/autoMATEClient/*.project
+autoMATE_client/autoMATEClient/*.metadata
+autoMATE_client/autoMATEClient/*/.metadata
+autoMATE_client/autoMATEClient/bin/
+autoMATE_client/autoMATEClient/tmp/
+autoMATE_client/autoMATEClient/*.tmp
+autoMATE_client/autoMATEClient/*.bak
+autoMATE_client/autoMATEClient/*.swp
+autoMATE_client/autoMATEClient/*~.nib
+autoMATE_client/autoMATEClient/local.properties
+autoMATE_client/autoMATEClient/*.classpath
+autoMATE_client/autoMATEClient/*.settings/
+autoMATE_client/autoMATEClient/*.loadpath
+
+autoMATE_client/autoMATEServer/*.pydevproject
+autoMATE_client/autoMATEServer/*.project
+autoMATE_client/autoMATEServer/*.metadata
+autoMATE_client/autoMATEServer/*/.metadata
+autoMATE_client/autoMATEServer/bin/
+autoMATE_client/autoMATEServer/tmp/
+autoMATE_client/autoMATEServer/*.tmp
+autoMATE_client/autoMATEServer/*.bak
+autoMATE_client/autoMATEServer/*.swp
+autoMATE_client/autoMATEServer/*~.nib
+autoMATE_client/autoMATEServer/local.properties
+autoMATE_client/autoMATEServer/*.classpath
+autoMATE_client/autoMATEServer/*.settings/
+autoMATE_client/autoMATEServer/*.loadpath
+
 # External tool builders
 .externalToolBuilders/
 
