@@ -11,8 +11,10 @@
 <typeInfo handle="=autoMATEClient/src&lt;com.automate.io{PacketReadThread.java[PacketReadThread" modifiers="1" timestamp="1389646448540"/>
 <typeInfo handle="=autoMATEServer/C:\/Program Files\/Java\/jre6\/lib\/rt.jar&lt;java.util.concurrent(Callable.class[Callable" modifiers="1537" timestamp="1362609311397"/>
 <typeInfo handle="=autoMATEServer/src&lt;com.automate.protocol{MessageHandler.java[MessageHandler" modifiers="1025" timestamp="1391885468013"/>
-<typeInfo handle="=autoMATEServer/src&lt;com.automate.server{IManager.java[IManager" modifiers="513" timestamp="1391462736738"/>
-<typeInfo handle="=autoMATEServer/src&lt;com.automate.server.messaging{IMessageHandler.java[IMessageHandler" modifiers="513" timestamp="1391460751046"/>
+<typeInfo handle="=autoMATEServer/src&lt;com.automate.server{IManager.java[IManager" modifiers="513" timestamp="1392067391452"/>
 <typeInfo handle="=autoMATEServer/C:\/Program Files\/Java\/jre6\/lib\/rt.jar&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1362609311397"/>
-<typeInfo handle="=autoMATEServer/src&lt;com.automate.protocol{Message.java[Message" modifiers="1025" timestamp="1391885235857"/>
+<typeInfo handle="=autoMATEServer/src&lt;com.automate.protocol{Message.java[Message" modifiers="1025" timestamp="1392326955397"/>
+<typeInfo handle="=autoMATEServer/src&lt;com.automate.protocol.server.subParsers{ServerMessageSubParser.java[ServerMessageSubParser" modifiers="1025" timestamp="1392347743832"/>
+<typeInfo handle="=autoMATEServer/src&lt;com.automate.protocol.client.subParsers{ClientMessageSubParser.java[ClientMessageSubParser" modifiers="1025" timestamp="1392347822905"/>
+<typeInfo handle="=autoMATEServer/src&lt;com.automate.server.messaging{IMessageHandler.java[IMessageHandler" modifiers="513" timestamp="1391460751046"/>
 </typeInfoHistroy>
