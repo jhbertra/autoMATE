@@ -7,9 +7,9 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ClientStatusUpdateMessage extends Message<ClientProtocolParameters> {
 
-	private int nodeId;
+	public final long nodeId;
 	
-	public ClientStatusUpdateMessage(ClientProtocolParameters parameters, int nodeId) {
+	public ClientStatusUpdateMessage(ClientProtocolParameters parameters, long nodeId) {
 		super(parameters);
 		this.nodeId = nodeId;
 	}

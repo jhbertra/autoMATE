@@ -123,14 +123,14 @@ public class ClientCommandMessageSubParserTest {
 	@Test
 	public void testProperlyFormattedMessageNoNameNoArgs() throws Exception {
 		subject = new ClientCommandMessageSubParser();
-		ClientCommandMessage expected = new ClientCommandMessage(parameters, "0", null, "0", null);
+		ClientCommandMessage expected = new ClientCommandMessage(parameters, 0, null, 0, null);
 		assertEquals(expected, subject.parseXml(xml4));
 	}
 	
 	@Test
 	public void testProperlyFormattedMessageNoArgs() throws Exception {
 		subject = new ClientCommandMessageSubParser();
-		ClientCommandMessage expected = new ClientCommandMessage(parameters, "0", "shutdown", "0", null);
+		ClientCommandMessage expected = new ClientCommandMessage(parameters, 0, "shutdown", 0, null);
 		assertEquals(expected, subject.parseXml(xml5));
 	}
 	
@@ -139,7 +139,7 @@ public class ClientCommandMessageSubParserTest {
 		subject = new ClientCommandMessageSubParser();
 		List<CommandArgument<?>> args = new ArrayList<CommandArgument<?>>();
 		args.add(CommandArgument.newCommandArgument("on", Type.BOOLEAN, true));
-		ClientCommandMessage expected = new ClientCommandMessage(parameters, "0", "setPower", "0", args);
+		ClientCommandMessage expected = new ClientCommandMessage(parameters, 0, "setPower", 0, args);
 		assertEquals(expected, subject.parseXml(xml6));
 	}
 	
@@ -149,7 +149,7 @@ public class ClientCommandMessageSubParserTest {
 		List<CommandArgument<?>> args = new ArrayList<CommandArgument<?>>();
 		args.add(CommandArgument.newCommandArgument("on", Type.BOOLEAN, true));
 		args.add(CommandArgument.newCommandArgument("speed", Type.REAL, 2.5));
-		ClientCommandMessage expected = new ClientCommandMessage(parameters, "0", "setPower", "0", args);
+		ClientCommandMessage expected = new ClientCommandMessage(parameters, 0, "setPower", 0, args);
 		assertEquals(expected, subject.parseXml(xml7));
 	}
 

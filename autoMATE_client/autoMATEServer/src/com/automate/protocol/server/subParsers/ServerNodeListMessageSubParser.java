@@ -73,7 +73,7 @@ public class ServerNodeListMessageSubParser extends ServerMessageSubParser<Serve
 			}
 			int id;
 			try {
-				id = Integer.parseInt(idString);
+				id = Long.parseLong(idString);
 			} catch (RuntimeException e) {
 				throw new SAXException("Unable to parse node id.");
 			}

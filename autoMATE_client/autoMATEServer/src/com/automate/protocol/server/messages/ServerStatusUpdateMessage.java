@@ -10,11 +10,11 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ServerStatusUpdateMessage extends Message<ServerProtocolParameters> {
 	
-	private int nodeId;
+	public final long nodeId;
 	
-	private List<Status<?>> statuses;
+	public final List<Status<?>> statuses;
 	
-	public ServerStatusUpdateMessage(ServerProtocolParameters parameters, int nodeId, List<Status<?>> statuses) {
+	public ServerStatusUpdateMessage(ServerProtocolParameters parameters, long nodeId, List<Status<?>> statuses) {
 		super(parameters);
 		this.nodeId = nodeId;
 		this.statuses = statuses;

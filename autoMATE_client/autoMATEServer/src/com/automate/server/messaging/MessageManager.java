@@ -56,8 +56,8 @@ public class MessageManager implements IMessageManager {
 	public void initialize() throws Exception {
 		receiveThread = new PacketReceiveThread(Executors.newFixedThreadPool(25), this);
 		packetSendThreadpool = Executors.newFixedThreadPool(25);
-		handlers.put(MessageType.AUTHENTICATION, new AuthenticationMessageHandler());
-		handlers.put(MessageType.NODE_LIST, new NodeListMessageHandler());
+		handlers.put(MessageType.AUTHENTICATION, new AuthenticationMessageHandler(securityManager));
+		handlers.put(MessageType.NODE_LIST, new NodeListMessageHandler(dbManager, securityManager));
 		handlers.put(MessageType.PING, new PingMessageHandler(connectivityManager));
 		this.connectivityManager.setMessageManager(this);
 	}

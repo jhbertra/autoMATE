@@ -7,14 +7,14 @@ import com.automate.util.xml.XmlFormatException;
 public class Node extends XmlConvertible {
 
 	public final String name;
-	public final int id;
+	public final long id;
 	public final String manufacturerCode;
 	public final String model;
 	public final String maxVersion;
 	public final String infoUrl;
 	public final String commandListUrl;
 	
-	public Node(String name, int id, String manufacturerCode, String model,String maxVersion, String infoUrl, String commandListUrl) {
+	public Node(String name, long id, String manufacturerCode, String model,String maxVersion, String infoUrl, String commandListUrl) {
 		this.name = name;
 		this.id = id;
 		this.manufacturerCode = manufacturerCode;

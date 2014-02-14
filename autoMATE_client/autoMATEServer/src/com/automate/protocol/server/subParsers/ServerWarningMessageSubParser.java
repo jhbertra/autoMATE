@@ -13,8 +13,8 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ServerWarningMessageSubParser extends ServerMessageSubParser<ServerWarningMessage> {
 
-	private int warningId;
-	private int nodeId;
+	private long warningId;
+	private long nodeId;
 	private String warningMessage;
 	
 	/* (non-Javadoc)
@@ -51,8 +51,8 @@ public class ServerWarningMessageSubParser extends ServerMessageSubParser<Server
 			Attributes attributes) throws SAXException {
 		if(qName.equals("warning")) {
 			try {				
-				warningId = Integer.parseInt(attributes.getValue("warning-id"));
-				nodeId = Integer.parseInt(attributes.getValue("node-id"));
+				warningId = Long.parseLong(attributes.getValue("warning-id"));
+				nodeId = Long.parseLong(attributes.getValue("node-id"));
 			} catch(NumberFormatException e) {
 				throw new SAXException(e);
 			}
