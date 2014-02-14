@@ -1,14 +1,31 @@
 package com.automate.protocol.client.subParsers;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.client.messages.ClientStatusUpdateMessage;
+import com.automate.util.xml.XmlFormatException;
 
 public class ClientStatusUpdateSubParser extends ClientMessageSubParser<ClientStatusUpdateMessage> {
 
 	private int nodeId;
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.client.subParsers.ClientMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ClientStatusUpdateMessage parseXml(String xml)
+			throws XmlFormatException, IOException, MessageFormatException,
+			SAXException, ParserConfigurationException {
+		nodeId = -1;
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#endElement(java.lang.String, java.lang.String, java.lang.String)
 	 */

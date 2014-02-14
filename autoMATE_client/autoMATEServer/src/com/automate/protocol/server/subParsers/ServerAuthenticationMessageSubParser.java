@@ -1,9 +1,15 @@
 package com.automate.protocol.server.subParsers;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.server.messages.ServerAuthenticationMessage;
+import com.automate.util.xml.XmlFormatException;
 
 public class ServerAuthenticationMessageSubParser extends ServerMessageSubParser<ServerAuthenticationMessage> {
 	
@@ -12,6 +18,20 @@ public class ServerAuthenticationMessageSubParser extends ServerMessageSubParser
 	private String response;
 	private String sessionKey;
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.server.subParsers.ServerMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ServerAuthenticationMessage parseXml(String xml)
+			throws XmlFormatException, IOException, MessageFormatException,
+			SAXException, ParserConfigurationException {
+		username = null;
+		responseCode = 0;
+		response = null;
+		sessionKey = null;
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#endElement(java.lang.String, java.lang.String, java.lang.String)
 	 */

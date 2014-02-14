@@ -1,9 +1,15 @@
 package com.automate.protocol.server.subParsers;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.server.messages.ServerCommandMessage;
+import com.automate.util.xml.XmlFormatException;
 
 public class ServerCommandMessageSubParser extends ServerMessageSubParser<ServerCommandMessage> {
 	
@@ -11,6 +17,19 @@ public class ServerCommandMessageSubParser extends ServerMessageSubParser<Server
 	private int responseCode;
 	private String commandMessage;
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.server.subParsers.ServerMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ServerCommandMessage parseXml(String xml) throws XmlFormatException,
+			IOException, MessageFormatException, SAXException,
+			ParserConfigurationException {
+		commandId = null;
+		responseCode = 0;
+		commandMessage = null;
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#endElement(java.lang.String, java.lang.String, java.lang.String)
 	 */

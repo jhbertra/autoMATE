@@ -1,15 +1,20 @@
 package com.automate.protocol.server.subParsers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.models.Status;
 import com.automate.protocol.models.Type;
 import com.automate.protocol.models.Type.TypeFormatException;
 import com.automate.protocol.server.messages.ServerStatusUpdateMessage;
+import com.automate.util.xml.XmlFormatException;
 
 public class ServerStatusUpdateMessageSubParser extends ServerMessageSubParser<ServerStatusUpdateMessage> {
 	
@@ -29,6 +34,18 @@ public class ServerStatusUpdateMessageSubParser extends ServerMessageSubParser<S
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.server.subParsers.ServerMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ServerStatusUpdateMessage parseXml(String xml)
+			throws XmlFormatException, IOException, MessageFormatException,
+			SAXException, ParserConfigurationException {
+		this.nodeId = -1;
+		this.statuses = new ArrayList<Status<?>>();
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */

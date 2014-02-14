@@ -43,7 +43,7 @@ public class ServerNodeListMessage extends Message <ServerProtocolParameters> {
 	public boolean equals(Object obj) {
 		if(super.equals(obj)) {
 			return	(this.nodes == null ? 
-						((ServerNodeListMessage)obj).nodes == null 
+						(((ServerNodeListMessage)obj).nodes == null || ((ServerNodeListMessage)obj).nodes.isEmpty()) 
 						: this.nodes.equals(((ServerNodeListMessage)obj).nodes));
 		} else return false;
 	}

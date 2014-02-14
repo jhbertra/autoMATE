@@ -1,9 +1,15 @@
 package com.automate.protocol.server.subParsers;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.server.messages.ServerWarningMessage;
+import com.automate.util.xml.XmlFormatException;
 
 public class ServerWarningSubParser extends ServerMessageSubParser<ServerWarningMessage> {
 
@@ -24,6 +30,19 @@ public class ServerWarningSubParser extends ServerMessageSubParser<ServerWarning
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.server.subParsers.ServerMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ServerWarningMessage parseXml(String xml) throws XmlFormatException,
+			IOException, MessageFormatException, SAXException,
+			ParserConfigurationException {
+		warningId = -1;
+		nodeId = -1;
+		warningMessage = null;
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */

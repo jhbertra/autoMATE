@@ -1,13 +1,18 @@
 package com.automate.protocol.server.subParsers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.models.Node;
 import com.automate.protocol.server.messages.ServerNodeListMessage;
+import com.automate.util.xml.XmlFormatException;
 
 public class ServerNodeListMessageSubParser extends ServerMessageSubParser<ServerNodeListMessage> {
 
@@ -26,6 +31,17 @@ public class ServerNodeListMessageSubParser extends ServerMessageSubParser<Serve
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.server.subParsers.ServerMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ServerNodeListMessage parseXml(String xml)
+			throws XmlFormatException, IOException, MessageFormatException,
+			SAXException, ParserConfigurationException {
+		nodes = new ArrayList<Node>();
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */

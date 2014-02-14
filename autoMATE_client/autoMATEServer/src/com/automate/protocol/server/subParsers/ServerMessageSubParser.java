@@ -1,11 +1,17 @@
 package com.automate.protocol.server.subParsers;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import com.automate.protocol.Message;
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.MessageSubParser;
 import com.automate.protocol.server.ServerProtocolParameters;
+import com.automate.util.xml.XmlFormatException;
 
 public abstract class ServerMessageSubParser <M extends Message<ServerProtocolParameters>> 
 extends MessageSubParser<M, ServerProtocolParameters> {
@@ -13,7 +19,19 @@ extends MessageSubParser<M, ServerProtocolParameters> {
 	protected ServerProtocolParameters parameters;
 	private int majorVersion, minorVersion;
 	private boolean sessionValid;
-	
+
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.MessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public M parseXml(String xml) throws XmlFormatException, IOException,
+			MessageFormatException, SAXException, ParserConfigurationException {
+		parameters = null;
+		majorVersion = 0;
+		minorVersion = 0;
+		sessionValid = false;
+		return super.parseXml(xml);
+	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)

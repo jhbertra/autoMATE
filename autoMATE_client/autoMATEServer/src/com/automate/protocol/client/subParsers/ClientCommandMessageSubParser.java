@@ -1,15 +1,20 @@
 package com.automate.protocol.client.subParsers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
+import com.automate.protocol.MessageFormatException;
 import com.automate.protocol.client.messages.ClientCommandMessage;
 import com.automate.protocol.models.CommandArgument;
 import com.automate.protocol.models.Type;
 import com.automate.protocol.models.Type.TypeFormatException;
+import com.automate.util.xml.XmlFormatException;
 
 public class ClientCommandMessageSubParser extends ClientMessageSubParser<ClientCommandMessage> {
 	
@@ -18,6 +23,20 @@ public class ClientCommandMessageSubParser extends ClientMessageSubParser<Client
 	private String commandId;
 	private List<CommandArgument<?>> args = new ArrayList<CommandArgument<?>>();
 	
+	/* (non-Javadoc)
+	 * @see com.automate.protocol.client.subParsers.ClientMessageSubParser#parseXml(java.lang.String)
+	 */
+	@Override
+	public ClientCommandMessage parseXml(String xml) throws XmlFormatException,
+			IOException, MessageFormatException, SAXException,
+			ParserConfigurationException {
+		nodeId = null;
+		name = null;
+		commandId = null;
+		args = new ArrayList<CommandArgument<?>>();
+		return super.parseXml(xml);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.automate.protocol.server.ServerMessageSubParser#endElement(java.lang.String, java.lang.String, java.lang.String)
 	 */

@@ -35,5 +35,21 @@ public class Node extends XmlConvertible {
 				, new Attribute("info-url", infoUrl)
 				, new Attribute("command-list-url", commandListUrl));
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Node) {
+			return 	name.equals(((Node) obj).name)
+					&& id == ((Node) obj).id
+					&& manufacturerCode.equals(((Node) obj).manufacturerCode)
+					&& model.equals(((Node) obj).model)
+					&& maxVersion.equals(((Node) obj).maxVersion)
+					&& infoUrl.equals(((Node) obj).infoUrl)
+					&& commandListUrl.equals(((Node) obj).commandListUrl);
+		} else return false;
+	}
 	
 }
