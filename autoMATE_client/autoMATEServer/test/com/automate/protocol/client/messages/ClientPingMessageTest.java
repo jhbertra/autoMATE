@@ -1,20 +1,21 @@
-package com.automate.protocol.server.messages;
+package com.automate.protocol.client.messages;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.automate.protocol.server.ServerProtocolParameters;
+import com.automate.protocol.client.ClientProtocolParameters;
 import com.automate.util.xml.XmlFormatException;
 
-public class ServerPingMessageTest {
+public class ClientPingMessageTest {
 
-	private ServerPingMessage subject;
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
+	private ClientPingMessage subject;
 	
+	private ClientProtocolParameters parameters = new ClientProtocolParameters(0, 0, "");
+
 	@Test
 	public void testToXml() {
-		subject = new ServerPingMessage(parameters);
+		subject = new ClientPingMessage(parameters);
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -26,7 +27,7 @@ public class ServerPingMessageTest {
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
-							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+							"\t\t<parameter name=\"session-key\" value=\"\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<ping />\n" +

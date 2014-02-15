@@ -15,7 +15,7 @@ public class ServerNodeListMessageTest {
 
 	public ServerNodeListMessage subject;
 	
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true, "session");
+	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
 
 	@Test
 	public void testToXmlNoNodes() {
@@ -32,7 +32,6 @@ public class ServerNodeListMessageTest {
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
-							"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<node-list />\n" +
@@ -59,7 +58,6 @@ public class ServerNodeListMessageTest {
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
-							"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<node-list >\n" +
@@ -90,7 +88,6 @@ public class ServerNodeListMessageTest {
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
-							"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<node-list >\n" +
