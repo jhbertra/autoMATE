@@ -35,4 +35,8 @@ public interface ISecurityManager extends IManager {
 
 	ServerProtocolParameters getResponseParameters(ClientProtocolParameters parameters);
 
+	String getSessionKeyForNode(long nodeId);
+
+	String getSessionKeyForUsername(String username);
+	
 }

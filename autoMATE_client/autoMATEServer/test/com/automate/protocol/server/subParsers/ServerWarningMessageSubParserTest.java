@@ -18,6 +18,7 @@ public class ServerWarningMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<warning />\n" +
@@ -29,6 +30,7 @@ public class ServerWarningMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<warning warning-id=\"0\" message=\"I'm gonna asplode.\" />\n" +
@@ -40,6 +42,7 @@ public class ServerWarningMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<warning node-id=\"0\" message=\"I'm gonna asplode.\" />\n" +
@@ -51,6 +54,7 @@ public class ServerWarningMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<warning node-id=\"0\" warning-id=\"0\" />\n" +
@@ -62,13 +66,14 @@ public class ServerWarningMessageSubParserTest {
 			"\t<parameters >\n" +
 			"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 			"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+			"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 			"\t</parameters>\n" +
 			"\t<content >\n" +
 			"\t\t<warning node-id=\"0\" warning-id=\"0\" message=\"I'm gonna asplode.\" />\n" +
 			"\t</content>\n" +
 			"</message>\n";
 	
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
+	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true, "session");
 	
 	@Test(expected=SAXException.class)
 	public void testNoAttributes() throws Exception {

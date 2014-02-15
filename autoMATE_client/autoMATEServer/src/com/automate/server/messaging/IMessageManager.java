@@ -16,17 +16,15 @@ public interface IMessageManager extends IManager {
 	/**
 	 * Send message to the client id'd by clientd.
 	 * @param message
-	 * @param sessionKey
 	 */
-	public void sendMessage(Message<ServerProtocolParameters> message, String sessionKey);
+	public void sendMessage(Message<ServerProtocolParameters> message);
 
 	/**
 	 * Send message to the client id'd by clientd.  Calls the listener when the message was sent
 	 * @param message  the message to be sent
-	 * @param sessionKey the session key to send it to
 	 * @param listener the listener to be notified when the message is sent
 	 */
-	public void sendMessage(Message<ServerProtocolParameters> message, String sessionKey, MessageSentListener listener);
+	public void sendMessage(Message<ServerProtocolParameters> message, MessageSentListener listener);
 	
 	/**
 	 * Handles input from a socket (called from a worker thread).
