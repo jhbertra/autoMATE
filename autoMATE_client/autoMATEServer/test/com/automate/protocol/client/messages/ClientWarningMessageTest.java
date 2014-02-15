@@ -1,25 +1,20 @@
-package com.automate.protocol.server.messages;
+package com.automate.protocol.client.messages;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.automate.protocol.server.ServerProtocolParameters;
+import com.automate.protocol.client.ClientProtocolParameters;
 import com.automate.util.xml.XmlFormatException;
 
-public class ServerWarningMessageTest {
+public class ClientWarningMessageTest {
 
-	private ServerWarningMessage subject;
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
-	
-	@Test(expected = NullPointerException.class)
-	public void testNullMessage() {
-		subject = new ServerWarningMessage(parameters, 0, 0, null);
-	}
+	private ClientWarningMessage subject;
+	private ClientProtocolParameters parameters = new ClientProtocolParameters(0, 0, "");
 	
 	@Test
 	public void testToXml() {
-		subject = new ServerWarningMessage(parameters, 0, 0, "I'm about to blow up!");
+		subject = new ClientWarningMessage(parameters, 0);
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -31,10 +26,10 @@ public class ServerWarningMessageTest {
 							"<message >\n" +
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
-							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
+							"\t\t<parameter name=\"session-key\" value=\"\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
-							"\t\t<warning warning-id=\"0\" node-id=\"0\" message=\"I'm about to blow up!\" />\n" +
+							"\t\t<warning warning-id=\"0\" />\n" +
 							"\t</content>\n" +
 							"</message>\n";
 		String actual = builder.toString();

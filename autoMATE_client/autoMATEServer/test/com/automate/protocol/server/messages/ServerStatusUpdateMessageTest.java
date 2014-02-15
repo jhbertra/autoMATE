@@ -14,12 +14,12 @@ import com.automate.util.xml.XmlFormatException;
 
 public class ServerStatusUpdateMessageTest {
 	
-	private ServerClientStatusUpdateMessage subject;
-	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true, "session");
+	private ServerStatusUpdateMessage subject;
+	private ServerProtocolParameters parameters = new ServerProtocolParameters(0, 0, true);
 	
 	@Test
 	public void testNoStatuses() {
-		subject = new ServerClientStatusUpdateMessage(parameters, 0, null);
+		subject = new ServerStatusUpdateMessage(parameters, 0, null);
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -32,7 +32,6 @@ public class ServerStatusUpdateMessageTest {
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
-							"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<status-update node-id=\"0\" />\n" +
@@ -46,7 +45,7 @@ public class ServerStatusUpdateMessageTest {
 	public void testOneStatus() {
 		List<Status<?>> statuses = new ArrayList<Status<?>>();
 		statuses.add(Status.newStatus("Temperature", Type.INTEGER, 375));
-		subject = new ServerClientStatusUpdateMessage(parameters, 0, statuses);
+		subject = new ServerStatusUpdateMessage(parameters, 0, statuses);
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -59,7 +58,6 @@ public class ServerStatusUpdateMessageTest {
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
-							"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<status-update node-id=\"0\" >\n" +
@@ -76,7 +74,7 @@ public class ServerStatusUpdateMessageTest {
 		List<Status<?>> statuses = new ArrayList<Status<?>>();
 		statuses.add(Status.newStatus("Temperature", Type.INTEGER, 375));
 		statuses.add(Status.newStatus("Mode", Type.STRING, "Bake"));
-		subject = new ServerClientStatusUpdateMessage(parameters, 0, statuses);
+		subject = new ServerStatusUpdateMessage(parameters, 0, statuses);
 		StringBuilder builder = new StringBuilder();
 		try {
 			subject.toXml(builder, 0);
@@ -89,7 +87,6 @@ public class ServerStatusUpdateMessageTest {
 							"\t<parameters >\n" +
 							"\t\t<parameter name=\"version\" value=\"0.0\" />\n" +
 							"\t\t<parameter name=\"session-valid\" value=\"true\" />\n" +
-							"\t\t<parameter name=\"session-key\" value=\"session\" />\n" +
 							"\t</parameters>\n" +
 							"\t<content >\n" +
 							"\t\t<status-update node-id=\"0\" >\n" +
